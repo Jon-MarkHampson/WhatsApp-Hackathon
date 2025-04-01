@@ -3,7 +3,7 @@
 Turn your WhatsApp into a meme factory! This bot uses Imgflip's powerful API to generate and send memes directly through WhatsApp. Whether you want AI-generated memes, caption your favorites, or create custom GIFs - we've got you covered! 🎨
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-meme--machine--web.vercel.app-blue)](https://meme-machine-web.vercel.app)
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-green)](https://github.com/yourusername/meme_machine)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-green)](https://github.com/Jon-MarkHampson/WhatsApp-Hackathon)
 
 <p align="center">
   <img src="website/static/mockup.png" alt="WhatsApp Meme Machine Mockup">
@@ -180,10 +180,14 @@ python main.py
 - Some templates work better with shorter text
 
 ## 📸 Examples
-[Screenshots coming soon!]
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-meme--machine--web.vercel.app-blue)](https://meme-machine-web.vercel.app)
+
+## ⌨️ Get Code
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-green)](https://github.com/Jon-MarkHampson/WhatsApp-Hackathon)
 
 ## 🔗 Links
-- [Live Demo](https://meme-machine-web.vercel.app)
-- [GitHub Repository](https://github.com/yourusername/meme_machine)
+- [Meme Machine Gallery](https://meme-machine-web.vercel.app)
+- [Masterschool Team Presentation](https://meme-machine-web.vercel.app/presentation/1)
+- [GitHub Repository](https://github.com/Jon-MarkHampson/WhatsApp-Hackathon)
 - [Imgflip API Documentation](https://imgflip.com/api)
 - [Twilio WhatsApp API](https://www.twilio.com/whatsapp)
