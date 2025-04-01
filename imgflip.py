@@ -20,7 +20,7 @@ class ImgflipAPI(ABC):
     """
     BASE_URL = "https://api.imgflip.com"
     
-    def __init__(self, username: str = None, password: str = None, base_folder: str = "memes"):
+    def __init__(self, username: str = None, password: str = None, base_folder: str = "website/memes"):
         """
         Initialize the API client.
 
@@ -30,7 +30,7 @@ class ImgflipAPI(ABC):
         Args:
             username (str, optional): Imgflip username. Defaults to os.getenv("IMGFLIP_USERNAME").
             password (str, optional): Imgflip password. Defaults to os.getenv("IMGFLIP_PASSWORD").
-            base_folder (str, optional): Folder to store meme metadata. Defaults to "memes".
+            base_folder (str, optional): Folder to store meme metadata. Defaults to "website/memes".
         
         Raises:
             ValueError: If credentials are not found.
