@@ -64,6 +64,51 @@
         .meme-card {
             opacity: 0;
         }
+        @keyframes logo-spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .logo-spin:hover {
+            animation: logo-spin 2s linear infinite;
+        }
+
+        /* Neue Hover-Effekte für Galerie-Bilder */
+        .meme-card {
+            overflow: hidden;
+            position: relative;
+        }
+
+        .meme-card img {
+            transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            object-fit: cover;
+            height: 16rem;
+            width: 100%;
+        }
+
+        .meme-card:hover img {
+            object-fit: contain;
+            transform: scale(0.9);
+            animation: bounce 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: scale(0.9);
+            }
+            50% {
+                transform: scale(0.95);
+            }
+        }
+
+        /* Container für Bild-Overflow */
+        .meme-card:hover {
+            z-index: 10;
+        }
     </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
@@ -71,10 +116,10 @@
     <nav class="bg-white dark:bg-gray-800 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
-                <div class="flex">
-                    <div class="flex-shrink-0 flex items-center">
-                        <h1 class="text-2xl font-bold text-primary-600 dark:text-primary-400">Meme Machine</h1>
-                    </div>
+                <div class="flex items-center">
+                    <img src="/static/mm_light.svg" alt="Logo Light" class="h-8 w-8 mr-2 dark:hidden logo-spin">
+                    <img src="/static/mm_dark.svg" alt="Logo Dark" class="h-8 w-8 mr-2 hidden dark:block logo-spin">
+                    <h1 class="text-2xl font-bold text-primary-600 dark:text-primary-400">Meme Machine</h1>
                 </div>
                 <div class="flex items-center">
                     <button id="theme-toggle" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700">

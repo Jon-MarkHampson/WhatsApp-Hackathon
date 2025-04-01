@@ -30,6 +30,13 @@
             transform: translateX(20px);
             animation: slideIn 0.5s ease-out forwards;
         }
+        @keyframes logoSpin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .logo-spin:hover {
+            animation: logoSpin 1s linear;
+        }
     </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 min-h-screen transition-colors duration-200">
@@ -37,10 +44,10 @@
     <nav class="bg-white dark:bg-gray-800 shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16">
-                <div class="flex">
-                    <div class="flex-shrink-0 flex items-center">
-                        <a href="/" class="text-2xl font-bold text-primary-600 dark:text-primary-400">Meme Machine</a>
-                    </div>
+                <div class="flex items-center">
+                    <img src="/static/mm_light.svg" alt="Logo Light" class="h-8 w-8 mr-2 dark:hidden logo-spin">
+                    <img src="/static/mm_dark.svg" alt="Logo Dark" class="h-8 w-8 mr-2 hidden dark:block logo-spin">
+                    <a href="/" class="text-2xl font-bold text-primary-600 dark:text-primary-400">Meme Machine</a>
                 </div>
                 <div class="flex items-center space-x-4">
                     <span class="text-gray-500 dark:text-gray-400">Slide {{ current_id }} of {{ max_slides }}</span>
@@ -61,6 +68,14 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div class="slide-content bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden">
             <div class="p-8">
+                {% if current_id == 1 %}
+                <!-- Special styling for first slide -->
+                <div class="flex flex-col items-center mb-12">
+                    <img src="/static/mm_light.svg" alt="Logo Light" class="h-32 w-32 dark:hidden logo-spin">
+                    <img src="/static/mm_dark.svg" alt="Logo Dark" class="h-32 w-32 hidden dark:block logo-spin">
+                </div>
+                {% endif %}
+                
                 <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-4">{{ slide.headline }}</h1>
                 <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">{{ slide.text1 }}</p>
                 
