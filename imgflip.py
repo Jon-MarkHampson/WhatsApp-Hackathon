@@ -6,7 +6,6 @@ from datetime import datetime
 import json
 from dotenv import load_dotenv
 
-# Load environment variables
 load_dotenv()
 
 class ImgflipAPI(ABC):
@@ -29,49 +28,50 @@ class ImgflipAPI(ABC):
         self.metadata = self._load_metadata()
     
     def _create_folder_structure(self):
-        """Create the folder structure for different types of memes"""
+        """Create the folder structure for metadata"""
         # Create base folder if it doesn't exist
         if not os.path.exists(self.base_folder):
             os.makedirs(self.base_folder)
-            
-        # Create type-specific folders
-        self.folders = {
-            "ai": os.path.join(self.base_folder, "ai_memes"),
-            "auto": os.path.join(self.base_folder, "auto_memes"),
-            "caption": os.path.join(self.base_folder, "captioned_memes"),
-            "gif": os.path.join(self.base_folder, "gif_memes")
-        }
-        
-        for folder in self.folders.values():
-            if not os.path.exists(folder):
-                os.makedirs(folder)
     
     def _load_metadata(self) -> Dict:
         """Load or create metadata JSON file"""
         if os.path.exists(self.metadata_file):
-            with open(self.metadata_file, 'r') as f:
-                return json.load(f)
+            try:
+                with open(self.metadata_file, 'r') as f:
+                    return json.load(f)
+            except json.JSONDecodeError:
+                print(f"Warning: Could not read {self.metadata_file}. Creating new metadata file.")
+                return {"memes": []}
         return {"memes": []}
     
     def _save_metadata(self, meme_type: str, query: str, response_data: Dict[str, Any], local_path: str):
         """Save meme metadata to JSON file"""
-        timestamp = datetime.now().isoformat()
-        
-        meme_info = {
-            "timestamp": timestamp,
-            "type": meme_type,
-            "query": query,
-            "imgflip_url": response_data["data"]["url"],
-            "page_url": response_data["data"].get("page_url"),
-            "local_path": local_path,
-            "template_id": response_data["data"].get("template_id"),
-            "texts": response_data["data"].get("texts", [])
-        }
-        
-        self.metadata["memes"].append(meme_info)
-        
-        with open(self.metadata_file, 'w') as f:
-            json.dump(self.metadata, f, indent=2)
+        try:
+            timestamp = datetime.now().isoformat()
+            
+            meme_info = {
+                "timestamp": timestamp,
+                "type": meme_type,
+                "query": query,
+                "imgflip_url": response_data["data"]["url"],
+                "page_url": response_data["data"].get("page_url"),
+                "template_id": response_data["data"].get("template_id"),
+                "texts": response_data["data"].get("texts", [])
+            }
+            
+            self.metadata["memes"].append(meme_info)
+            
+            # Ensure the directory exists
+            os.makedirs(os.path.dirname(self.metadata_file), exist_ok=True)
+            
+            # Save with pretty printing and proper encoding
+            with open(self.metadata_file, 'w', encoding='utf-8') as f:
+                json.dump(self.metadata, f, indent=2, ensure_ascii=False)
+            
+            print(f"\nMetadata saved to: {self.metadata_file}")
+            
+        except Exception as e:
+            print(f"\nWarning: Could not save metadata: {str(e)}")
     
     def _make_request(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
         """Make a POST request to the Imgflip API"""
@@ -86,32 +86,14 @@ class ImgflipAPI(ABC):
         return response.json()
     
     def save_meme(self, response_data: Dict[str, Any], meme_type: str, query: str, prefix: str = "") -> str:
-        """Save the meme image to type-specific folder and update metadata"""
+        """Save the meme metadata to JSON file"""
         if not response_data.get("success"):
-            raise Exception(f"API request failed: {response_data.get('error_message')}")
+            raise ValueError(f"API request failed: {response_data.get('error_message')}")
             
-        meme_url = response_data["data"]["url"]
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        
-        # Determine file extension from URL
-        extension = "jpg" if meme_url.endswith(".jpg") else "gif"
-        filename = f"{prefix}_{timestamp}.{extension}"
-        
-        # Get the appropriate folder for this meme type
-        folder = self.folders.get(meme_type, self.base_folder)
-        filepath = os.path.join(folder, filename)
-        
-        # Download and save the image
-        img_response = requests.get(meme_url)
-        img_response.raise_for_status()
-        
-        with open(filepath, "wb") as f:
-            f.write(img_response.content)
-        
-        # Save metadata
-        self._save_metadata(meme_type, query, response_data, filepath)
+        # Save metadata only
+        self._save_metadata(meme_type, query, response_data, None)
             
-        return filepath
+        return response_data["data"]["url"]
 
 class AIMeme(ImgflipAPI):
     """Class for generating AI-powered memes"""
@@ -126,8 +108,7 @@ class AIMeme(ImgflipAPI):
             
         response = self._make_request("ai_meme", data)
         query = f"{prefix_text[:30]}"
-        filepath = self.save_meme(response, "ai", query, f"ai_meme_{prefix_text[:30]}")
-        print(f"Meme saved to: {filepath}")
+        url = self.save_meme(response, "ai", query, f"ai_meme_{prefix_text[:30]}")
         return response
 
 class AutoMeme(ImgflipAPI):
@@ -140,8 +121,7 @@ class AutoMeme(ImgflipAPI):
         
         response = self._make_request("automeme", data)
         query = f"{text[:30]}"
-        filepath = self.save_meme(response, "auto", query, f"automeme_{text[:30]}")
-        print(f"Meme saved to: {filepath}")
+        url = self.save_meme(response, "auto", query, f"automeme_{text[:30]}")
         return response
 
 class MemeSearch(ImgflipAPI):
@@ -176,8 +156,7 @@ class CaptionImage(ImgflipAPI):
         
         response = self._make_request("caption_image", data)
         query = f"{text0} | {text1}"
-        filepath = self.save_meme(response, "caption", query, f"caption_{template_id}")
-        print(f"Meme saved to: {filepath}")
+        url = self.save_meme(response, "caption", query, f"caption_{template_id}")
         return response
 
 class CaptionGif(ImgflipAPI):
@@ -191,79 +170,113 @@ class CaptionGif(ImgflipAPI):
         
         response = self._make_request("caption_gif", data)
         query = " | ".join(box["text"] for box in boxes)
-        filepath = self.save_meme(response, "gif", query, f"gif_{template_id}")
-        print(f"Meme saved to: {filepath}")
+        url = self.save_meme(response, "gif", query, f"gif_{template_id}")
         return response
 
 def main():
-    try:
-        print("\nWelcome to Imgflip API Client!")
-        print("Available options:")
-        print("1. Generate AI Meme")
-        print("2. Generate Auto Meme")
-        print("3. Search Meme Templates")
-        print("4. Get Specific Meme")
-        print("5. Caption Image")
-        print("6. Caption GIF")
-        
-        choice = input("\nEnter your choice (1-6): ")
-        
-        if choice == "1":
-            context = input("Enter context for the meme (e.g., 'trump greenland'): ")
-            ai_meme = AIMeme()
-            result = ai_meme.generate(context)
-            print("\nMeme generated successfully!")
-            print(f"URL: {result['data']['url']}")
+    while True:
+        try:
+            print("\nWelcome to Imgflip API Client!")
+            print("Available options:")
+            print("1. Generate AI Meme")
+            print("2. Generate Auto Meme")
+            print("3. Search Meme Templates")
+            print("4. Get Specific Meme")
+            print("5. Caption Image")
+            print("6. Caption GIF")
+            print("7. Exit")
             
-        elif choice == "2":
-            text = input("Enter text for the meme: ")
-            auto_meme = AutoMeme()
-            result = auto_meme.generate(text)
-            print("\nMeme generated successfully!")
-            print(f"URL: {result['data']['url']}")
+            choice = input("\nEnter your choice (1-7): ")
             
-        elif choice == "3":
-            query = input("Enter search query: ")
-            search = MemeSearch()
-            result = search.search(query)
-            print("\nSearch results:")
-            for meme in result['data']['memes'][:5]:  # Show top 5 results
-                print(f"- {meme['name']} (ID: {meme['id']})")
+            if choice == "7":
+                print("Goodbye!")
+                break
                 
-        elif choice == "4":
-            template_id = int(input("Enter template ID: "))
-            get_meme = GetMeme()
-            result = get_meme.get(template_id)
-            print("\nMeme details:")
-            print(f"Name: {result['data']['meme']['name']}")
-            print(f"URL: {result['data']['meme']['url']}")
+            if choice == "1":
+                while True:
+                    try:
+                        context = input("Enter context for the meme (e.g., 'trump greenland'): ")
+                        ai_meme = AIMeme()
+                        result = ai_meme.generate(context)
+                        print("\nMeme generated successfully!")
+                        print(f"URL: {result['data']['url']}")
+                        break
+                    except ValueError as e:
+                        print(f"\nError: {str(e)}")
+                        retry = input("Would you like to try again? (y/n): ")
+                        if retry.lower() != 'y':
+                            break
+                
+            elif choice == "2":
+                while True:
+                    try:
+                        text = input("Enter text for the meme: ")
+                        auto_meme = AutoMeme()
+                        result = auto_meme.generate(text)
+                        print("\nMeme generated successfully!")
+                        print(f"URL: {result['data']['url']}")
+                        break
+                    except ValueError as e:
+                        print(f"\nError: {str(e)}")
+                        retry = input("Would you like to try again? (y/n): ")
+                        if retry.lower() != 'y':
+                            break
+                
+            elif choice == "3":
+                query = input("Enter search query: ")
+                search = MemeSearch()
+                result = search.search(query)
+                print("\nSearch results:")
+                for meme in result['data']['memes'][:5]:  # Show top 5 results
+                    print(f"- {meme['name']} (ID: {meme['id']})")
+                
+            elif choice == "4":
+                template_id = input("Enter template ID: ")
+                get_meme = GetMeme()
+                result = get_meme.get(int(template_id))
+                print(f"\nMeme name: {result['data']['meme']['name']}")
+                
+            elif choice == "5":
+                while True:
+                    try:
+                        template_id = int(input("Enter template ID: "))
+                        text0 = input("Enter first text: ")
+                        text1 = input("Enter second text (optional): ")
+                        caption = CaptionImage()
+                        result = caption.caption(template_id, text0, text1)
+                        print("\nMeme generated successfully!")
+                        print(f"URL: {result['data']['url']}")
+                        break
+                    except ValueError as e:
+                        print(f"\nError: {str(e)}")
+                        retry = input("Would you like to try again? (y/n): ")
+                        if retry.lower() != 'y':
+                            break
+                
+            elif choice == "6":
+                while True:
+                    try:
+                        template_id = int(input("Enter template ID: "))
+                        num_boxes = int(input("Enter number of text boxes: "))
+                        boxes = []
+                        for i in range(num_boxes):
+                            text = input(f"Enter text for box {i+1}: ")
+                            boxes.append({"text": text})
+                        
+                        caption_gif = CaptionGif()
+                        result = caption_gif.caption(template_id, boxes)
+                        print("\nMeme generated successfully!")
+                        print(f"URL: {result['data']['url']}")
+                        break
+                    except ValueError as e:
+                        print(f"\nError: {str(e)}")
+                        retry = input("Would you like to try again? (y/n): ")
+                        if retry.lower() != 'y':
+                            break
             
-        elif choice == "5":
-            template_id = int(input("Enter template ID: "))
-            text0 = input("Enter top text: ")
-            text1 = input("Enter bottom text: ")
-            caption = CaptionImage()
-            result = caption.caption(template_id, text0, text1)
-            print("\nMeme captioned successfully!")
-            print(f"URL: {result['data']['url']}")
-            
-        elif choice == "6":
-            template_id = int(input("Enter template ID: "))
-            boxes = []
-            num_boxes = int(input("Enter number of text boxes: "))
-            for i in range(num_boxes):
-                text = input(f"Enter text for box {i+1}: ")
-                boxes.append({"text": text})
-            caption = CaptionGif()
-            result = caption.caption(template_id, boxes)
-            print("\nGIF captioned successfully!")
-            print(f"URL: {result['data']['url']}")
-            
-        else:
-            print("Invalid choice!")
-            
-    except Exception as e:
-        print(f"\nError: {str(e)}")
+        except Exception as e:
+            print(f"\nAn unexpected error occurred: {str(e)}")
+            input("Press Enter to continue...")
 
 if __name__ == "__main__":
     main()
