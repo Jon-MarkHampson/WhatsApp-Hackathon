@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 def load_memes():
     try:
-        meme_file = os.path.join('memes', 'meme_metadata.json')
+        meme_file = os.path.join('website', 'memes', 'meme_metadata.json')
         with open(meme_file, 'r') as f:
             data = json.load(f)
             # Sort memes by timestamp in descending order
@@ -19,7 +19,7 @@ def load_memes():
 
 def load_presentation():
     try:
-        presentation_file = os.path.join('content', 'presentation.json')
+        presentation_file = os.path.join('website', 'content', 'presentation.json')
         with open(presentation_file, 'r') as f:
             return json.load(f)
     except Exception as e:
