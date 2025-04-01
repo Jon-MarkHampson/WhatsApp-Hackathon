@@ -2,29 +2,80 @@
 
 Turn your WhatsApp into a meme factory! This bot uses Imgflip's powerful API to generate and send memes directly through WhatsApp. Whether you want AI-generated memes, caption your favorites, or create custom GIFs - we've got you covered! 🎨
 
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-meme--machine--web.vercel.app-blue)](https://meme-machine-web.vercel.app)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-green)](https://github.com/yourusername/meme_machine)
+
 <img width="1115" alt="Screenshot 2025-04-01 at 05 01 04" src="https://github.com/user-attachments/assets/1d6ff114-5673-4711-9178-e66e71e10228" />
-meme-machine-web.vercel.app
 
 ## ✨ Features
 - 🧠 AI-powered meme generation using Imgflip's API
 - 📱 Direct WhatsApp integration via Twilio
 - 🎯 No watermarks on generated memes
 - 📊 Automatic metadata tracking of all your creations
+- 🎲 Surprise meme generation from curated prompts
+- 🔍 Advanced meme template search
+- 📈 Access to top and random meme templates
 
 ## 🎮 WhatsApp Commands
 
 Send these commands to your WhatsApp bot:
 
 ```
-/ai_meme [text]     🤖 Generate an AI-powered meme based on your text
-/auto [text]        🎲 Let Imgflip choose the perfect template for your text
-/caption [id] [text]📝 Add your text to a specific meme template
-/gif [id] [text]    ✨ Create an animated meme with your text
-/search [query]     🔍 Search for meme templates
-/help              ❓ Show all available commands
+generate [text]    🤖 Generate an AI-powered meme based on your text
+meme [text]        🎲 Let Imgflip choose the perfect template for your text
+surprise          🎁 Get a random meme from our curated collection
+search [query]     🔍 Search for meme templates by keyword
+top                ✨ View the 20 most popular meme templates
+random             🔄 View 20 random meme templates
+caption [id]       📝 Add your text to a specific meme template
+help              ❓ Show all available commands
 ```
 
-[Screenshots coming soon!]
+## 🎯 Function Examples
+
+### AI Meme Generation
+```
+generate A funny cat sitting on a chair
+generate A dog dancing in the rain
+```
+
+### Auto Meme Generation
+```
+meme I'm tired of all these meetings
+meme Finally weekend!
+```
+
+### Surprise Meme
+```
+surprise
+```
+
+### Meme Search
+```
+search cat
+search dog
+search funny
+```
+
+### Template Browsing
+```
+top
+random
+```
+
+### Custom Captioning
+```
+caption 181913649
+```
+(After entering the ID, the bot will prompt for caption text)
+
+### Example Results
+![AI Meme Example](https://via.placeholder.com/400x300/007ACC/FFFFFF?text=AI+Meme+Example)
+![Auto Meme Example](https://via.placeholder.com/400x300/007ACC/FFFFFF?text=Auto+Meme+Example)
+![Surprise Meme Example](https://via.placeholder.com/400x300/007ACC/FFFFFF?text=Surprise+Meme+Example)
+![Search Results Example](https://via.placeholder.com/400x300/007ACC/FFFFFF?text=Search+Results+Example)
+![Template Browsing Example](https://via.placeholder.com/400x300/007ACC/FFFFFF?text=Template+Browsing+Example)
+![Custom Caption Example](https://via.placeholder.com/400x300/007ACC/FFFFFF?text=Custom+Caption+Example)
 
 ## 🎨 What Imgflip Offers
 
@@ -52,7 +103,7 @@ Our integration leverages these awesome Imgflip features:
 
 ## 📊 Metadata Storage
 
-All generated memes are tracked in `memes/meme_metadata.json`:
+All generated memes are tracked in `website/memes/meme_metadata.json`:
 
 ```json
 {
@@ -90,22 +141,27 @@ IMGFLIP_PASSWORD=your_imgflip_password
 
 3. Start the application:
 ```bash
-# Flask
+# Flask (Web Interface)
+cd website
 python app.py
 
-# Twilio and imgflip
+# Twilio and imgflip (WhatsApp Bot)
 python main.py
 ```
 
 4. Set up Twilio webhook:
-   - Go to your Twilio console
+   - Go to your [Twilio console](https://console.twilio.com)
    - Configure the WhatsApp webhook URL to point to your server's `/webhook` endpoint
    - Ensure your server is accessible via HTTPS (required by Twilio)
 
 ## 📝 Usage Tips
-- Start with `/help` to see all available commands
+- Start with `help` to see all available commands
 - For AI memes, be descriptive in your text prompt
-- Use `/search` to find specific meme templates
+- Use `search` to find specific meme templates
+- Try `surprise` for a random meme from our curated collection
+- Use `top` to see trending templates
+- Use `random` to discover new templates
+- For custom captions, first use `search` to find a template ID
 - All memes are stored on Imgflip's servers and accessible via URLs in the metadata
 - Browse your meme history in the metadata JSON file
 
@@ -117,3 +173,9 @@ python main.py
 
 ## 📸 Examples
 [Screenshots coming soon!]
+
+## 🔗 Links
+- [Live Demo](https://meme-machine-web.vercel.app)
+- [GitHub Repository](https://github.com/yourusername/meme_machine)
+- [Imgflip API Documentation](https://imgflip.com/api)
+- [Twilio WhatsApp API](https://www.twilio.com/whatsapp)
