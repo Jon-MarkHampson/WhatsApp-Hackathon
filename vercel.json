@@ -3,7 +3,11 @@
     "builds": [
         {
             "src": "website/app.py",
-            "use": "@vercel/python"
+            "use": "@vercel/python",
+            "config": {
+                "memory": 1024,
+                "maxDuration": 10
+            }
         },
         {
             "src": "website/static/**",
@@ -22,11 +26,5 @@
             "src": "/(.*)",
             "dest": "website/app.py"
         }
-    ],
-    "functions": {
-        "api/*.py": {
-            "memory": 1024,
-            "maxDuration": 10
-        }
-    }
+    ]
 } 
