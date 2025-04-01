@@ -177,7 +177,7 @@
 
         <!-- Hero Section -->
         <div class="relative bg-white dark:bg-gray-800 overflow-hidden">
-            <div class="absolute inset-0 dark:bg-[url('/static/backdrop_Dark.jpg')] dark:bg-repeat dark:opacity-25"></div>
+            <div class="absolute inset-0 dark:bg-[url('/static/backdrop_Dark.jpg')] dark:bg-repeat dark:opacity-25 dark:[background-size:50%_50%]"></div>
             <div class="max-w-7xl mx-auto">
                 <div class="relative z-10 pb-8 bg-transparent dark:bg-transparent sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
                     <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
@@ -192,15 +192,17 @@
                                 </p>
                             </div>
                             <div class="md:w-1/2 flex justify-center">
-                                <video 
-                                    src="/static/mockup.mp4" 
-                                    alt="WhatsApp Meme Machine Mockup" 
-                                    class="w-[448px] h-[924px] object-contain rounded-[50px] shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
-                                    autoplay 
-                                    loop 
-                                    muted
-                                    playsinline
-                                ></video>
+                                <div class="shadow-[0_35px_60px_-15px_rgba(255,255,255,0.1)] dark:shadow-[0_35px_60px_-15px_rgba(255,255,255,0.1)]">
+                                    <video 
+                                        src="/static/mockup.mp4" 
+                                        alt="WhatsApp Meme Machine Mockup" 
+                                        class="w-[448px] h-[924px] object-contain rounded-[62.5px] shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
+                                        autoplay 
+                                        loop 
+                                        muted
+                                        playsinline
+                                    ></video>
+                                </div>
                             </div>
                         </div>
                     </main>
