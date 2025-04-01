@@ -25,20 +25,26 @@ Send these commands to your WhatsApp bot:
 ```
 generate [text]    🤖 Generate an AI-powered meme based on your text
 meme [text]        🎲 Let Imgflip choose the perfect template for your text
-surprise          🎁 Get a random meme from our curated collection
+surprise           🎁 Get a random meme from our curated collection
 search [query]     🔍 Search for meme templates by keyword
 top                ✨ View the 20 most popular meme templates
 random             🔄 View 20 random meme templates
 caption [id]       📝 Add your text to a specific meme template
-help              ❓ Show all available commands
+help               ❓ Show all available commands
 ```
 
 ## 🎯 Function Examples
 
+### Help Menu
+```
+help
+```
+![Help Menu Example](website/screenshots/help.png)
+
 ### AI Meme Generation
 ```
-generate A funny cat sitting on a chair
-generate A dog dancing in the rain
+generate Something with coding and coffee
+generate trump china joke
 ```
 ![AI Meme Example](website/screenshots/generate.png)
 
@@ -74,14 +80,10 @@ random
 ```
 caption 181913649
 ```
-(After entering the ID, the bot will prompt for caption text)
+(After entering the ID, the bot will prompt for caption text for the lines of the template)
 ![Custom Caption Example](website/screenshots/caption.png)
 
-### Help Menu
-```
-help
-```
-![Help Menu Example](website/screenshots/help.png)
+
 
 ## 🎨 What Imgflip Offers
 
