@@ -2,6 +2,8 @@
 
 Turn your WhatsApp into a meme factory! This bot uses Imgflip's powerful API to generate and send memes directly through WhatsApp. Whether you want AI-generated memes, caption your favorites, or create custom GIFs - we've got you covered! 🎨
 
+<img width="1115" alt="Screenshot 2025-04-01 at 05 01 04" src="https://github.com/user-attachments/assets/1d6ff114-5673-4711-9178-e66e71e10228" />
+
 ## ✨ Features
 - 🧠 AI-powered meme generation using Imgflip's API
 - 📱 Direct WhatsApp integration via Twilio
