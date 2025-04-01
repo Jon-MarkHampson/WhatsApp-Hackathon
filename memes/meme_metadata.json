@@ -163,6 +163,79 @@
         "WHEN YOU CODE AN INFINITE LOOP",
         "ESCAPE, THERE IS NONE"
       ]
+    },
+    {
+      "timestamp": "2025-04-01T12:28:53.322567",
+      "type": "ai",
+      "query": "computer science",
+      "imgflip_url": "https://i.imgflip.com/9pc1dl.jpg",
+      "page_url": "https://imgflip.com/i/9pc1dl",
+      "template_id": 110163934,
+      "texts": [
+        "I bet he's thinking about other women",
+        "If programmers hate coding so much, why do they call it \"debugging\"?"
+      ]
+    },
+    {
+      "timestamp": "2025-04-01T12:41:08.393986",
+      "type": "ai",
+      "query": "trump china",
+      "imgflip_url": "https://i.imgflip.com/9pc2ir.jpg",
+      "page_url": "https://imgflip.com/i/9pc2ir",
+      "template_id": 188390779,
+      "texts": [
+        "** CHINA'S GONNA PAY FOR THE WALL!\n\n**",
+        "** Cat with a \"Sure, Jan\" expression"
+      ]
+    },
+    {
+      "timestamp": "2025-04-01T12:43:28.478781",
+      "type": "ai",
+      "query": "python programming",
+      "imgflip_url": "https://i.imgflip.com/9pc2si.jpg",
+      "page_url": "https://imgflip.com/i/9pc2si",
+      "template_id": 371619279,
+      "texts": [
+        "NO BUGS?",
+        "JUST FEATURES"
+      ]
+    },
+    {
+      "timestamp": "2025-04-01T12:46:06.259608",
+      "type": "ai",
+      "query": "Other languages: ‘Hello World!’\nPython: ‘You don’t need semicolons where we’re going.",
+      "imgflip_url": "https://i.imgflip.com/9pc33f.jpg",
+      "page_url": "https://imgflip.com/i/9pc33f",
+      "template_id": 342785297,
+      "texts": [
+        "YOU SAY ‘HELLO WORLD’ WITH SEMICOLONS",
+        "I SAY ‘HELLO WORLD’ WITHOUT SEMICOLONS",
+        "WE ARE NOT THE SAME"
+      ]
+    },
+    {
+      "timestamp": "2025-04-01T13:12:30.093261",
+      "type": "ai",
+      "query": "Python is dynamically typed. So is my love life – unpredictable and crashes often.",
+      "imgflip_url": "https://i.imgflip.com/9pc5vx.jpg",
+      "page_url": "https://imgflip.com/i/9pc5vx",
+      "template_id": 247113703,
+      "texts": [
+        "MY PYTHON SCRIPT RUNNING SMOOTHLY",
+        "A RANDOM TYPE ERROR CRASHING EVERYTHING"
+      ]
+    },
+    {
+      "timestamp": "2025-04-01T13:12:57.711710",
+      "type": "ai",
+      "query": "Python is dynamically typed. So is my love life – unpredictable and crashes often.",
+      "imgflip_url": "https://i.imgflip.com/9pc5xn.jpg",
+      "page_url": "https://imgflip.com/i/9pc5xn",
+      "template_id": 21735,
+      "texts": [
+        "Python is dynamically typed.",
+        "So is my love life – unpredictable and crashes often."
+      ]
     }
   ]
 }

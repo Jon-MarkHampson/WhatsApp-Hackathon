@@ -157,7 +157,10 @@ class AutoMeme(ImgflipAPI):
                 "no_watermark": ""
             },
         )
-        return response.json()
+        response_data = response.json()
+        if response_data["success"]:
+            self.save_meme(response_data, "auto", caption)
+        return response_data
 
 class MemeSearch(ImgflipAPI):
     """Class for searching meme templates"""
