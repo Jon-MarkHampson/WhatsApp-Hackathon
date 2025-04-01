@@ -3,68 +3,142 @@
     "slides": [
         {
             "id": 1,
-            "headline": "Revolutionizing Meme Creation 🚀",
-            "text1": "Transform your WhatsApp into a powerful meme generation platform",
+            "headline": "Introduction & Team 👥",
+            "text1": "Meet the team behind the WhatsApp Meme Generator",
             "bulletpoints": [
-                "AI-powered meme generation",
-                "Instant delivery via WhatsApp",
-                "Multiple meme types support",
-                "No watermarks"
+                "Project overview and vision",
+                "Team members and roles",
+                "Project timeline",
+                "Collaborative student project"
             ],
-            "image": "/static/img/hero-mockup.png",
-            "caption": "Your personal meme assistant in your pocket"
+            "image": "/static/img/team.png",
+            "caption": "Building the future of meme creation"
         },
         {
             "id": 2,
-            "headline": "Smart Features 🧠",
-            "text1": "Leverage the power of AI for perfect memes",
+            "headline": "Technical Stack 🛠",
+            "text1": "Modern technologies powering our solution",
             "bulletpoints": [
-                "Context-aware template selection",
-                "Automatic text positioning",
-                "Multiple generation styles",
-                "Instant sharing capabilities"
-            ],
-            "image": "/static/img/features.png",
-            "caption": "AI-powered meme generation at your fingertips"
-        },
-        {
-            "id": 3,
-            "headline": "Easy to Use Commands 🎮",
-            "text1": "Simple commands for powerful results",
-            "bulletpoints": [
-                "/ai_meme - AI-generated memes",
-                "/auto - Automatic template selection",
-                "/caption - Custom meme creation",
-                "/gif - Animated meme generation"
-            ],
-            "image": "/static/img/commands.png",
-            "caption": "Create memes with simple text commands"
-        },
-        {
-            "id": 4,
-            "headline": "Technical Excellence 🛠",
-            "text1": "Built with modern technologies",
-            "bulletpoints": [
-                "Flask backend for reliability",
+                "Flask backend framework",
+                "Twilio WhatsApp API",
                 "Imgflip API integration",
-                "Twilio WhatsApp integration",
-                "Automatic metadata tracking"
+                "JSON-based metadata storage",
+                "Vercel deployment"
             ],
             "image": "/static/img/tech-stack.png",
             "caption": "Powered by industry-leading technologies"
         },
         {
-            "id": 5,
-            "headline": "Get Started Today! 🎉",
-            "text1": "Join the meme revolution",
+            "id": 3,
+            "headline": "Architecture & Code Structure 📁",
+            "text1": "Clean and modular code organization",
             "bulletpoints": [
-                "Free tier available",
-                "Premium features for power users",
-                "24/7 meme generation",
-                "Growing template library"
+                "Twilio.py - WhatsApp integration",
+                "imgflip.py - Meme generation",
+                "app.py - Main application",
+                "Templates - Frontend",
+                "Metadata tracking system"
             ],
-            "image": "/static/img/get-started.png",
-            "caption": "Start creating amazing memes now"
+            "image": "/static/img/architecture.png",
+            "caption": "Well-organized, maintainable codebase"
+        },
+        {
+            "id": 4,
+            "headline": "Core Features 🎯",
+            "text1": "Powerful meme generation capabilities",
+            "bulletpoints": [
+                "AI-generated memes",
+                "Automatic template selection",
+                "Custom caption creation",
+                "Simple command interface",
+                "Instant WhatsApp delivery"
+            ],
+            "image": "/static/img/features.png",
+            "caption": "Create memes with simple commands"
+        },
+        {
+            "id": 5,
+            "headline": "Challenges & Solutions 💡",
+            "text1": "Overcoming technical hurdles",
+            "bulletpoints": [
+                "Twilio message handling",
+                "Async processing",
+                "Error handling",
+                "API rate limits",
+                "Deployment challenges"
+            ],
+            "image": "/static/img/challenges.png",
+            "caption": "Innovative solutions to complex problems"
+        },
+        {
+            "id": 6,
+            "headline": "User Experience 🎨",
+            "text1": "Simple and intuitive interface",
+            "bulletpoints": [
+                "Minimalist design",
+                "Simple command structure",
+                "Direct WhatsApp integration",
+                "Instant feedback",
+                "User interaction examples"
+            ],
+            "image": "/static/img/ux.png",
+            "caption": "Making meme creation accessible to everyone"
+        },
+        {
+            "id": 7,
+            "headline": "Development Process 🔄",
+            "text1": "Our agile development approach",
+            "bulletpoints": [
+                "Agile methodology",
+                "Git workflow",
+                "Code review process",
+                "Testing strategies",
+                "Deployment pipeline"
+            ],
+            "image": "/static/img/process.png",
+            "caption": "Efficient and collaborative development"
+        },
+        {
+            "id": 8,
+            "headline": "Future & Extensions 🚀",
+            "text1": "Planned features and growth",
+            "bulletpoints": [
+                "Upcoming features",
+                "Scalability plans",
+                "Monetization options",
+                "Community engagement",
+                "Future roadmap"
+            ],
+            "image": "/static/img/future.png",
+            "caption": "Continuous improvement and growth"
+        },
+        {
+            "id": 9,
+            "headline": "Live Demo 🎥",
+            "text1": "See it in action",
+            "bulletpoints": [
+                "Main features demonstration",
+                "Code examples",
+                "Metadata tracking",
+                "Error handling",
+                "User interaction flow"
+            ],
+            "image": "/static/img/demo.png",
+            "caption": "Experience the power of our solution"
+        },
+        {
+            "id": 10,
+            "headline": "Q&A Session ❓",
+            "text1": "Let's discuss",
+            "bulletpoints": [
+                "Technical details",
+                "Architecture decisions",
+                "Development challenges",
+                "Future development",
+                "Open discussion"
+            ],
+            "image": "/static/img/qa.png",
+            "caption": "Your questions, our answers"
         }
     ]
 } 
