@@ -114,7 +114,6 @@ class AIMeme(ImgflipAPI):
         url = self.save_meme(response, "ai", query, f"ai_meme_{prefix_text[:30]}")
         return response
     
-    
     def send_ai_meme_to_imgflip(self, prompt, model="openai"):
         """Send ai meme prompt to imgflip to generate a meme"""
         console.print(f"Sending AI meme to the user: {prompt}", style="bold blue")
@@ -128,7 +127,10 @@ class AIMeme(ImgflipAPI):
                 "no_watermark": ""
             },
         )
-        return response.json()
+        response_data = response.json()
+        if response_data["success"]:
+            self.save_meme(response_data, "ai", prompt)
+        return response_data
 
 class AutoMeme(ImgflipAPI):
     """Class for automatically generating memes from text"""

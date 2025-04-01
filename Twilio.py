@@ -32,11 +32,9 @@ class Twilio:
         self.my_conversation = (
             self.get_my_conversation() or self.create_my_conversation()
         )
-
-        # Wait for the user to send a message, since we can't send first message without a valid WhatsApp template.
-        # ONLY after first message is sent by user, we can send messages to the user (WhatsApp will not allow us to send first message otherwise).
-        # For good reason. Nobody likes spammers ;)
-        self.wait_for_user_message()
+        
+        # Reset messages to avoid processing old messages
+        self.reset_messages()
 
     def delete_all_conversations(self):
         # Get a fresh start within the service
@@ -73,14 +71,24 @@ class Twilio:
         return conversation
 
     def wait_for_user_message(self):
-        # Wait until user sends a message
+        """Wait until user sends a message"""
         while True:
             messages = self.my_conversation.messages.list()
             if len(messages) > 0 and messages[-1].author == self.address:
                 console.print(f"Got a message from the user", style="bold green")
-                return messages[-1].body
+                message_body = messages[-1].body
+                # Delete the message after reading it
+                messages[-1].delete()
+                return message_body
             console.print(f"Waiting for user message...", style="bold yellow")
             time.sleep(1)
+
+    def reset_messages(self):
+        """Reset the message history to avoid processing old messages"""
+        messages = self.my_conversation.messages.list()
+        for message in messages:
+            if message.author == self.address:
+                message.delete()
 
     def send_message(self, message):
         # Send a message to the user
