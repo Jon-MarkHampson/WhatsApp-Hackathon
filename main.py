@@ -65,10 +65,8 @@ def main():
                 )
         
         elif user_message_instruction == "ai_meme":
-            # Send an AI meme to the user
+            # Send an AI meme prompt to imgflip
             ai_prompt = user_message[len(user_message_instruction):].strip()
-            if not ai_prompt:
-                ai_prompt = "Create a funny meme"
             ai_meme_response = twilio.send_ai_meme_to_imgflip(prompt=ai_prompt)
             if ai_meme_response["success"]:
                 console.print(f"imgflip response: {ai_meme_response['data']['url']}", style="bold blue")

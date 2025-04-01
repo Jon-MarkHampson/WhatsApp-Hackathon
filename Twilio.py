@@ -99,7 +99,7 @@ class Twilio:
 
         
     def send_caption_to_imgflip(self, caption):
-        # Send a caption to imgflip
+        """Send a caption to imgflip to generate a meme"""
         console.print(f"Sending caption to imgflip: {caption}", style="bold blue")
         response = requests.post(
             os.getenv("IMGFLIP_AUTOMEME_ENDPOINT"),
@@ -114,7 +114,9 @@ class Twilio:
     
     
     def send_ai_meme_to_imgflip(self, prompt, model="openai"):
-        # Send a meme to the user
+        """Send ai meme prompt to imgflip to generate a meme"""
+        if not ai_prompt:
+            ai_prompt = "Create a funny meme"
         console.print(f"Sending AI meme to the user: {prompt}", style="bold blue")
         response = requests.post(
             os.getenv("IMGFLIP_AI_ENDPOINT"),
