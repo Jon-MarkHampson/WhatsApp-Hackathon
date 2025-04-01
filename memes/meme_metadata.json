@@ -181,6 +181,130 @@
       "page_url": "https://imgflip.com/i/9pcnu7",
       "template_id": null,
       "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T16:02:40.097960",
+      "type": "ai",
+      "query": "trump tariffs mexico",
+      "imgflip_url": "https://i.imgflip.com/9pct3m.jpg",
+      "page_url": "https://imgflip.com/i/9pct3m",
+      "template_id": 3218037,
+      "texts": [
+        "THIS IS WHERE I PUT MY SAVINGS FROM TRUMP'S TARIFFS ON MEXICO",
+        "IF THERE WERE ANY"
+      ]
+    },
+    {
+      "timestamp": "2025-04-01T16:40:30.010451",
+      "type": "ai",
+      "query": "trump tariffs mexico",
+      "imgflip_url": "https://i.imgflip.com/9pcz8m.jpg",
+      "page_url": "https://imgflip.com/i/9pcz8m",
+      "template_id": 6235864,
+      "texts": [
+        "WHY DID TRUMP PUT TARIFFS ON MEXICO?",
+        "TO MAKE NACHO AVERAGE DEAL",
+        ""
+      ]
+    },
+    {
+      "timestamp": "2025-04-01T17:30:37.425441",
+      "type": "auto",
+      "query": "get 8 hours of sleep, y u no I remember it's Sunday",
+      "imgflip_url": "https://i.imgflip.com/9pd7kz.jpg",
+      "page_url": "https://imgflip.com/i/9pd7kz",
+      "template_id": 61527,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T17:40:46.933431",
+      "type": "auto",
+      "query": "I don't always wake up early, but when I do, I remember it's Sunday",
+      "imgflip_url": "https://i.imgflip.com/9pd96j.jpg",
+      "page_url": "https://imgflip.com/i/9pd96j",
+      "template_id": 61532,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T17:41:17.467023",
+      "type": "auto",
+      "query": "Back in my day, read the manual",
+      "imgflip_url": "https://i.imgflip.com/9pd99c.jpg",
+      "page_url": "https://imgflip.com/i/9pd99c",
+      "template_id": 718432,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T17:43:32.374233",
+      "type": "auto",
+      "query": "drink water... annnnd it's gone",
+      "imgflip_url": "https://i.imgflip.com/9pd9n5.jpg",
+      "page_url": "https://imgflip.com/i/9pd9n5",
+      "template_id": 766986,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T17:43:45.706925",
+      "type": "auto",
+      "query": "What if I told you close all the tabs",
+      "imgflip_url": "https://i.imgflip.com/9pd9oj.jpg",
+      "page_url": "https://imgflip.com/i/9pd9oj",
+      "template_id": 100947,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T17:44:00.685085",
+      "type": "auto",
+      "query": "read the manual... annnnd it's gone",
+      "imgflip_url": "https://i.imgflip.com/9pd9q4.jpg",
+      "page_url": "https://imgflip.com/i/9pd9q4",
+      "template_id": 766986,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T17:48:45.013880",
+      "type": "auto",
+      "query": "Brace yourselves, Hackathon is coming",
+      "imgflip_url": "https://i.imgflip.com/9pdahy.jpg",
+      "page_url": "https://imgflip.com/i/9pdahy",
+      "template_id": 61546,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T17:49:07.124127",
+      "type": "auto",
+      "query": "Brace yourselves, Hackathon is coming",
+      "imgflip_url": "https://i.imgflip.com/9pdak9.jpg",
+      "page_url": "https://imgflip.com/i/9pdak9",
+      "template_id": 61546,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T17:52:57.202626",
+      "type": "auto",
+      "query": "Free trial ends bats an eye, everyone loses their minds",
+      "imgflip_url": "https://i.imgflip.com/9pdb4l.jpg",
+      "page_url": "https://imgflip.com/i/9pdb4l",
+      "template_id": 1790995,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T17:53:16.915550",
+      "type": "auto",
+      "query": "Collect all the memes",
+      "imgflip_url": "https://i.imgflip.com/9pdb6h.jpg",
+      "page_url": "https://imgflip.com/i/9pdb6h",
+      "template_id": 61533,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T18:41:57.110616",
+      "type": "auto",
+      "query": "One does not simply walk into Mordor",
+      "imgflip_url": "https://i.imgflip.com/9pdim4.jpg",
+      "page_url": "https://imgflip.com/i/9pdim4",
+      "template_id": 61579,
+      "texts": []
     }
   ]
 }

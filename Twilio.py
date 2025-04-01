@@ -1,21 +1,25 @@
 # Twilio.py
+"""
+Module for managing a Twilio client and handling WhatsApp conversations.
+"""
+
 import os
 import time
-import requests
 from twilio.rest import Client
 from dotenv import load_dotenv
-# from flask import Flask, request, jsonify
 from rich.console import Console
 from rich import progress
 
 console = Console()
 
 
-
 class Twilio:
     def __init__(self):
+        """
+        Initialize the Twilio client, set up the conversation service,
+        and reset old messages.
+        """
         console.print("Initializing Twilio connection ...", style="bold green")
-        # Init Twilio client
         load_dotenv()
         account_sid = os.getenv("TWILIO_ACCOUNT_SID")
         api_sid = os.getenv("TWILIO_API_KEY_SID")
@@ -24,20 +28,19 @@ class Twilio:
         self.client = Client(api_sid, api_secret, account_sid)
         self.service = self.client.conversations.v1.services(self.service_sid)
 
-        # Init WhatsApp addresses
         self.address = f"whatsapp:{os.getenv('PHONE_NUMBER')}"
         self.ms_address = f"whatsapp:{os.getenv('TWILIO_PHONE_NUMBER')}"
 
-        # Reference to the conversation where the own phone number is a participant, or create a new one if none exists
         self.my_conversation = (
             self.get_my_conversation() or self.create_my_conversation()
         )
         
-        # Reset messages to avoid processing old messages
         self.reset_messages()
 
     def delete_all_conversations(self):
-        # Get a fresh start within the service
+        """
+        Delete all conversations in the Twilio service.
+        """
         console.print("Deleting all conversations...", style="bold red")
         for conversation in progress.track(
             self.service.conversations.list(), description="Deleting conversations..."
@@ -45,8 +48,12 @@ class Twilio:
             conversation.delete()
 
     def get_my_conversation(self):
-        # Go over existing conversations within the service, find the one where
-        # the own phone number is a participant. There can only be one or none.
+        """
+        Retrieve an existing conversation that includes the user's phone number.
+        
+        Returns:
+            conversation: The conversation object if found, otherwise None.
+        """
         for conversation in progress.track(
             self.service.conversations.list(), description="Getting my conversation..."
         ):
@@ -60,7 +67,12 @@ class Twilio:
         return None
 
     def create_my_conversation(self):
-        # Create conversation (note: assumes there is no existing conversation where the own phone number is a participant)
+        """
+        Create a new conversation with the user's phone number.
+        
+        Returns:
+            conversation: The newly created conversation object.
+        """
         conversation = self.service.conversations.create(
             friendly_name=f"Conversation with {self.address}"
         )
@@ -71,34 +83,52 @@ class Twilio:
         return conversation
 
     def wait_for_user_message(self):
-        """Wait until user sends a message"""
+        """
+        Wait until the user sends a message to the conversation.
+        
+        Returns:
+            str: The body of the user's message.
+        """
         while True:
             messages = self.my_conversation.messages.list()
             if len(messages) > 0 and messages[-1].author == self.address:
-                console.print(f"Got a message from the user", style="bold green")
+                console.print("Got a message from the user", style="bold green")
                 message_body = messages[-1].body
                 try:
-                    # Delete the message after reading it
                     messages[-1].delete()
                 except Exception as e:
                     console.print(f"Could not delete message: {str(e)}", style="bold yellow")
                 return message_body
-            console.print(f"Waiting for user message...", style="bold yellow")
+            console.print("Waiting for user message...", style="bold yellow")
             time.sleep(1)
 
     def reset_messages(self):
-        """Reset the message history to avoid processing old messages"""
+        """
+        Reset the message history by deleting messages sent by the user.
+        """
         messages = self.my_conversation.messages.list()
         for message in messages:
             if message.author == self.address:
                 message.delete()
 
     def send_message(self, message):
-        # Send a message to the user
+        """
+        Send a text message to the user.
+        
+        Args:
+            message (str): The message to be sent.
+        """
         console.print(f"Sending message to the user: {message}", style="bold blue")
         self.my_conversation.messages.create(body=message)
         
     def send_media_message(self, message_body, url_for_media):
+        """
+        Send a media message to the user.
+        
+        Args:
+            message_body (str): The text accompanying the media.
+            url_for_media (list or str): URL(s) of the media to send.
+        """
         console.print(f"Sending message to the user: {message_body}", style="bold blue")
         message = self.client.messages.create(
             from_=self.ms_address,
@@ -107,8 +137,6 @@ class Twilio:
             media_url=url_for_media
         )
         print("Message SID:", message.sid)
-
-            
 
 
 if __name__ == "__main__":
@@ -127,4 +155,3 @@ if __name__ == "__main__":
             f"Got a message from the user: '{user_message}', and replied",
             style="bold green",
         )
-        

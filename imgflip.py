@@ -12,11 +12,29 @@ console = Console()
 load_dotenv()
 
 class ImgflipAPI(ABC):
-    """Base class for Imgflip API operations"""
+    """
+    Base class for Imgflip API operations.
+
+    This class handles the basic utilities like folder creation, metadata management,
+    and performing API requests.
+    """
     BASE_URL = "https://api.imgflip.com"
     
     def __init__(self, username: str = None, password: str = None, base_folder: str = "memes"):
-        # Get credentials from environment variables if not provided
+        """
+        Initialize the API client.
+
+        Credentials can be passed directly or loaded from environment variables.
+        The folder structure and metadata file are set up upon initialization.
+
+        Args:
+            username (str, optional): Imgflip username. Defaults to os.getenv("IMGFLIP_USERNAME").
+            password (str, optional): Imgflip password. Defaults to os.getenv("IMGFLIP_PASSWORD").
+            base_folder (str, optional): Folder to store meme metadata. Defaults to "memes".
+        
+        Raises:
+            ValueError: If credentials are not found.
+        """
         self.username = username or os.getenv("IMGFLIP_USERNAME")
         self.password = password or os.getenv("IMGFLIP_PASSWORD")
         
@@ -26,18 +44,25 @@ class ImgflipAPI(ABC):
         self.base_folder = base_folder
         self._create_folder_structure()
         
-        # Initialize or load metadata file
         self.metadata_file = os.path.join(self.base_folder, "meme_metadata.json")
         self.metadata = self._load_metadata()
     
     def _create_folder_structure(self):
-        """Create the folder structure for metadata"""
-        # Create base folder if it doesn't exist
+        """
+        Create the folder structure for storing metadata.
+        
+        This method ensures that the base folder exists.
+        """
         if not os.path.exists(self.base_folder):
             os.makedirs(self.base_folder)
     
     def _load_metadata(self) -> Dict:
-        """Load or create metadata JSON file"""
+        """
+        Load the metadata from the JSON file or create a new structure if the file doesn't exist.
+
+        Returns:
+            Dict: Metadata containing a list of memes.
+        """
         if os.path.exists(self.metadata_file):
             try:
                 with open(self.metadata_file, 'r') as f:
@@ -48,7 +73,17 @@ class ImgflipAPI(ABC):
         return {"memes": []}
     
     def _save_metadata(self, meme_type: str, query: str, response_data: Dict[str, Any], local_path: str):
-        """Save meme metadata to JSON file"""
+        """
+        Save meme metadata to a JSON file.
+
+        This method updates the metadata JSON file with new meme information.
+
+        Args:
+            meme_type (str): The type of meme (e.g., 'ai', 'auto', etc.).
+            query (str): The search query or description used.
+            response_data (Dict[str, Any]): API response data.
+            local_path (str): Local storage path (currently unused).
+        """
         try:
             timestamp = datetime.now().isoformat()
             
@@ -64,10 +99,8 @@ class ImgflipAPI(ABC):
             
             self.metadata["memes"].append(meme_info)
             
-            # Ensure the directory exists
             os.makedirs(os.path.dirname(self.metadata_file), exist_ok=True)
             
-            # Save with pretty printing and proper encoding
             with open(self.metadata_file, 'w', encoding='utf-8') as f:
                 json.dump(self.metadata, f, indent=2, ensure_ascii=False)
             
@@ -77,7 +110,21 @@ class ImgflipAPI(ABC):
             print(f"\nWarning: Could not save metadata: {str(e)}")
     
     def _make_request(self, endpoint: str, data: Dict[str, Any]) -> Dict[str, Any]:
-        """Make a POST request to the Imgflip API"""
+        """
+        Make a POST request to the Imgflip API.
+
+        This method appends the user credentials to the request data.
+
+        Args:
+            endpoint (str): API endpoint (e.g., "caption_image").
+            data (Dict[str, Any]): Payload data for the request.
+
+        Returns:
+            Dict[str, Any]: The JSON response from the API.
+
+        Raises:
+            HTTPError: If the API response indicates an error.
+        """
         url = f"{self.BASE_URL}/{endpoint}"
         data.update({
             "username": self.username,
@@ -89,18 +136,49 @@ class ImgflipAPI(ABC):
         return response.json()
     
     def save_meme(self, response_data: Dict[str, Any], meme_type: str, query: str, prefix: str = "") -> str:
-        """Save the meme metadata to JSON file"""
+        """
+        Save the meme metadata to the JSON file.
+
+        Validates the API response and delegates saving metadata.
+        
+        Args:
+            response_data (Dict[str, Any]): API response dictionary.
+            meme_type (str): Type of the meme.
+            query (str): Query or textarea used for generating meme.
+            prefix (str, optional): Any prefix to use (currently not used for file storage). Defaults to "".
+
+        Returns:
+            str: URL of the generated meme.
+
+        Raises:
+            ValueError: If the API response indicates failure.
+        """
         if not response_data.get("success"):
             raise ValueError(f"API request failed: {response_data.get('error_message')}")
             
-        # Save metadata only
         self._save_metadata(meme_type, query, response_data, None)
             
         return response_data["data"]["url"]
 
 class AIMeme(ImgflipAPI):
-    """Class for generating AI-powered memes"""
+    """
+    Class for generating AI-powered memes.
+    
+    Extends the basic ImgflipAPI to include AI meme specific functionality.
+    """
+    
     def generate(self, prefix_text: str, model: str = "openai", template_id: Optional[int] = None) -> Dict[str, Any]:
+        """
+        Generate an AI-powered meme.
+
+        Args:
+            prefix_text (str): The initial text prompt for the AI meme.
+            model (str, optional): The AI model to use. Defaults to "openai".
+            template_id (Optional[int], optional): Optional template ID to use. Defaults to None.
+
+        Returns:
+            Dict[str, Any]: API response data for the generated meme.
+        """
         data = {
             "model": model,
             "prefix_text": prefix_text,
@@ -115,7 +193,16 @@ class AIMeme(ImgflipAPI):
         return response
     
     def send_ai_meme_to_imgflip(self, prompt, model="openai"):
-        """Send ai meme prompt to imgflip to generate a meme"""
+        """
+        Send an AI meme prompt to Imgflip through a dedicated endpoint.
+
+        Args:
+            prompt (str): The meme prompt.
+            model (str, optional): AI model to use. Defaults to "openai".
+
+        Returns:
+            Dict[str, Any]: API response data.
+        """
         console.print(f"Sending AI meme prompt: {prompt}", style="bold blue")
         response = requests.post(
             os.getenv("IMGFLIP_AI_ENDPOINT"),
@@ -133,8 +220,22 @@ class AIMeme(ImgflipAPI):
         return response_data
 
 class AutoMeme(ImgflipAPI):
-    """Class for automatically generating memes from text"""
+    """
+    Class for automatically generating memes from text.
+
+    Provides functionality to generate auto memes and interact with Imgflip's API.
+    """
+    
     def generate(self, text: str) -> Dict[str, Any]:
+        """
+        Generate an automatic meme from provided text.
+
+        Args:
+            text (str): The text for the meme.
+
+        Returns:
+            Dict[str, Any]: API response data for the generated meme.
+        """
         data = {
             "text": text,
             "no_watermark": True
@@ -146,7 +247,15 @@ class AutoMeme(ImgflipAPI):
         return response
     
     def send_caption_to_imgflip(self, caption):
-        """Send a caption to imgflip to generate a meme"""
+        """
+        Send a caption to Imgflip to generate a meme.
+
+        Args:
+            caption (str): Caption text to send for meme generation.
+
+        Returns:
+            Dict[str, Any]: API response from Imgflip.
+        """
         console.print(f"Sending caption to imgflip: {caption}", style="bold blue")
         response = requests.post(
             os.getenv("IMGFLIP_AUTOMEME_ENDPOINT"),
@@ -154,7 +263,7 @@ class AutoMeme(ImgflipAPI):
                 "username": os.getenv("IMGFLIP_USERNAME"),
                 "password": os.getenv("IMGFLIP_PASSWORD"),
                 "text": caption,
-                "no_watermark": ""
+                "no_watermark": True
             },
         )
         response_data = response.json()
@@ -163,8 +272,23 @@ class AutoMeme(ImgflipAPI):
         return response_data
 
 class MemeSearch(ImgflipAPI):
-    """Class for searching meme templates"""
+    """
+    Class for searching meme templates.
+    
+    Allows queries to search for specific meme templates.
+    """
+    
     def search(self, query: str, include_nsfw: bool = False) -> Dict[str, Any]:
+        """
+        Search for meme templates by query.
+
+        Args:
+            query (str): The search query.
+            include_nsfw (bool, optional): Whether to include NSFW results. Defaults to False.
+
+        Returns:
+            Dict[str, Any]: API response containing search results.
+        """
         data = {
             "query": query,
             "include_nsfw": 1 if include_nsfw else 0
@@ -173,8 +297,22 @@ class MemeSearch(ImgflipAPI):
         return self._make_request("search_memes", data)
 
 class GetMeme(ImgflipAPI):
-    """Class for getting a specific meme template"""
+    """
+    Class for retrieving a specific meme template.
+    
+    Retrieves details of a meme template by its ID.
+    """
+    
     def get(self, template_id: int) -> Dict[str, Any]:
+        """
+        Get a specific meme template by template ID.
+
+        Args:
+            template_id (int): The ID of the meme template.
+
+        Returns:
+            Dict[str, Any]: API response data containing the meme template.
+        """
         data = {
             "template_id": template_id
         }
@@ -182,17 +320,44 @@ class GetMeme(ImgflipAPI):
         return self._make_request("get_meme", data)
     
 class GetMemes(ImgflipAPI):
-    """Class for getting all meme templates"""
+    """
+    Class for retrieving all meme templates.
+    
+    Provides functionality to get a complete list of meme templates.
+    """
+    
     def get_memes(self):
+        """
+        Retrieve all meme templates available on Imgflip.
+
+        Returns:
+            Dict[str, Any]: API response data with the list of memes.
+        """
         url = f"{self.BASE_URL}/get_memes"
         response = requests.get(url)
         response.raise_for_status()
-        return response.json()        
-
+        return response.json()
 
 class CaptionImage(ImgflipAPI):
-    """Class for captioning static images"""
+    """
+    Class for captioning static images.
+    
+    Uses Imgflip's caption_image endpoint to generate memes with captions.
+    """
+    
     def caption(self, template_id: int, text0: str, text1: str = "", font: str = "impact") -> Dict[str, Any]:
+        """
+        Caption a static image using a template.
+
+        Args:
+            template_id (int): ID of the meme template.
+            text0 (str): Primary caption text.
+            text1 (str, optional): Secondary caption text. Defaults to "".
+            font (str, optional): Font style for the text. Defaults to "impact".
+
+        Returns:
+            Dict[str, Any]: API response data with the captioned image.
+        """
         data = {
             "template_id": template_id,
             "text0": text0,
@@ -202,14 +367,26 @@ class CaptionImage(ImgflipAPI):
         }
         
         response = self._make_request("caption_image", data)
-        # console.print(response)
-        # query = f"{text0} | {text1}"
-        # url = self.save_meme(response, "caption", query, f"caption_{template_id}")
         return response
 
 class CaptionGif(ImgflipAPI):
-    """Class for captioning animated GIFs"""
+    """
+    Class for captioning animated GIFs.
+    
+    Uses Imgflip's caption_gif endpoint to embed text into GIFs.
+    """
+    
     def caption(self, template_id: int, boxes: list) -> Dict[str, Any]:
+        """
+        Caption an animated GIF with multiple text boxes.
+
+        Args:
+            template_id (int): ID of the GIF template.
+            boxes (list): A list of dictionaries for each text box (each with a 'text' key).
+
+        Returns:
+            Dict[str, Any]: API response data with the captioned GIF.
+        """
         data = {
             "template_id": template_id,
             "boxes": json.dumps(boxes),
@@ -222,6 +399,12 @@ class CaptionGif(ImgflipAPI):
         return response
 
 def main():
+    """
+    Main function that provides a command-line interface for accessing Imgflip API operations.
+    
+    The user can generate memes, search for meme templates, caption images or GIFs,
+    and exit the application.
+    """
     while True:
         try:
             print("\nWelcome to Imgflip API Client!")
@@ -275,7 +458,7 @@ def main():
                 search = MemeSearch()
                 result = search.search(query)
                 print("\nSearch results:")
-                for meme in result['data']['memes'][:5]:  # Show top 5 results
+                for meme in result['data']['memes'][:5]:
                     print(f"- {meme['name']} (ID: {meme['id']})")
                 
             elif choice == "4":
