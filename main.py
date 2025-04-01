@@ -6,7 +6,10 @@ from rich.console import Console
 from twilio.rest import Client
 from dotenv import load_dotenv
 from Twilio import Twilio
+from imgflip import AutoMeme, AIMeme
 
+automeme = AutoMeme()
+ai_meme = AIMeme()
 console = Console()
 
 # # Initialize Flask app
@@ -44,10 +47,10 @@ def main():
         )
         # Check if the user message is a command
         user_message_instruction = user_message.lower().split(" ")[0]
-        if user_message_instruction in ["meme", "Meme", "meme!", "Meme!", "MEME", "MEME!"]:
+        if user_message_instruction == "meme":
             # Send a caption to imgflip
             caption = user_message[len(user_message_instruction):].strip()
-            imgflip_response = twilio.send_caption_to_imgflip(caption=caption)
+            imgflip_response = automeme.send_caption_to_imgflip(caption=caption)
             print(f"imgflip response: {imgflip_response}")
             if imgflip_response["success"]:
                 console.print(f"imgflip response: {imgflip_response['data']['url']}", style="bold blue")
@@ -67,7 +70,9 @@ def main():
         elif user_message_instruction == "ai_meme":
             # Send an AI meme prompt to imgflip
             ai_prompt = user_message[len(user_message_instruction):].strip()
-            ai_meme_response = twilio.send_ai_meme_to_imgflip(prompt=ai_prompt)
+            if not ai_prompt:
+                ai_prompt = "Create a funny meme"
+            ai_meme_response = ai_meme.send_ai_meme_to_imgflip(prompt=ai_prompt)
             if ai_meme_response["success"]:
                 console.print(f"imgflip response: {ai_meme_response['data']['url']}", style="bold blue")
                 # twilio.send_message(
@@ -82,9 +87,6 @@ def main():
                 twilio.send_message(
                     f"Failed to generate ai meme: {imgflip_response.get('error_message', 'Unknown error')}"
                 )
-        
-    
-    
     
     
 if __name__ == "__main__":

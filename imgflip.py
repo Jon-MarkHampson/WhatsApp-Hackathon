@@ -5,6 +5,9 @@ from typing import Dict, Any, Optional
 from datetime import datetime
 import json
 from dotenv import load_dotenv
+from rich.console import Console
+
+console = Console()
 
 load_dotenv()
 
@@ -110,6 +113,22 @@ class AIMeme(ImgflipAPI):
         query = f"{prefix_text[:30]}"
         url = self.save_meme(response, "ai", query, f"ai_meme_{prefix_text[:30]}")
         return response
+    
+    
+    def send_ai_meme_to_imgflip(self, prompt, model="openai"):
+        """Send ai meme prompt to imgflip to generate a meme"""
+        console.print(f"Sending AI meme to the user: {prompt}", style="bold blue")
+        response = requests.post(
+            os.getenv("IMGFLIP_AI_ENDPOINT"),
+            data={
+                "username": os.getenv("IMGFLIP_USERNAME"),
+                "password": os.getenv("IMGFLIP_PASSWORD"),
+                "model": model,
+                "prefix_text": prompt,
+                "no_watermark": ""
+            },
+        )
+        return response.json()
 
 class AutoMeme(ImgflipAPI):
     """Class for automatically generating memes from text"""
@@ -123,6 +142,20 @@ class AutoMeme(ImgflipAPI):
         query = f"{text[:30]}"
         url = self.save_meme(response, "auto", query, f"automeme_{text[:30]}")
         return response
+    
+    def send_caption_to_imgflip(self, caption):
+        """Send a caption to imgflip to generate a meme"""
+        console.print(f"Sending caption to imgflip: {caption}", style="bold blue")
+        response = requests.post(
+            os.getenv("IMGFLIP_AUTOMEME_ENDPOINT"),
+            data={
+                "username": os.getenv("IMGFLIP_USERNAME"),
+                "password": os.getenv("IMGFLIP_PASSWORD"),
+                "text": caption,
+                "no_watermark": ""
+            },
+        )
+        return response.json()
 
 class MemeSearch(ImgflipAPI):
     """Class for searching meme templates"""

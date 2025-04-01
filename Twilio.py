@@ -97,38 +97,7 @@ class Twilio:
         )
         print("Message SID:", message.sid)
 
-        
-    def send_caption_to_imgflip(self, caption):
-        """Send a caption to imgflip to generate a meme"""
-        console.print(f"Sending caption to imgflip: {caption}", style="bold blue")
-        response = requests.post(
-            os.getenv("IMGFLIP_AUTOMEME_ENDPOINT"),
-            data={
-                "username": os.getenv("IMGFLIP_USERNAME"),
-                "password": os.getenv("IMGFLIP_PASSWORD"),
-                "text": caption,
-                "no_watermark": ""
-            },
-        )
-        return response.json()
-    
-    
-    def send_ai_meme_to_imgflip(self, prompt, model="openai"):
-        """Send ai meme prompt to imgflip to generate a meme"""
-        if not ai_prompt:
-            ai_prompt = "Create a funny meme"
-        console.print(f"Sending AI meme to the user: {prompt}", style="bold blue")
-        response = requests.post(
-            os.getenv("IMGFLIP_AI_ENDPOINT"),
-            data={
-                "username": os.getenv("IMGFLIP_USERNAME"),
-                "password": os.getenv("IMGFLIP_PASSWORD"),
-                "model": model,
-                "prefix_text": prompt,
-                "no_watermark": ""
-            },
-        )
-        return response.json()
+            
 
 
 if __name__ == "__main__":
