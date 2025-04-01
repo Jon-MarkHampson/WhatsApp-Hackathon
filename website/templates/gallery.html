@@ -153,13 +153,21 @@
 
         .dark .glow-container {
             animation: glow 3s ease-in-out infinite;
-            border-radius: 65.625px;
+            border-radius: 68.90625px;
         }
 
         .video-container {
             position: relative;
-            border-radius: 65.625px;
+            border-radius: 68.90625px;
             overflow: hidden;
+            -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 2px, black calc(100% - 2px), transparent 100%);
+            mask-image: linear-gradient(to bottom, transparent 0%, black 2px, black calc(100% - 2px), transparent 100%);
+            -webkit-mask-size: calc(100% - 4px) 100%;
+            mask-size: calc(100% - 4px) 100%;
+            -webkit-mask-position: center;
+            mask-position: center;
+            -webkit-mask-repeat: no-repeat;
+            mask-repeat: no-repeat;
         }
     </style>
 </head>
