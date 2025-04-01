@@ -27,6 +27,7 @@ wheels/
 venv/
 ENV/
 env/
+.venv
 
 # Generated memes (except specific directories and metadata)
 memes/*
@@ -49,3 +50,4 @@ Thumbs.db
 # Node
 node_modules/
 .vercel
+

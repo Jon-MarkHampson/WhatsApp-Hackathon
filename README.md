@@ -90,7 +90,11 @@ IMGFLIP_PASSWORD=your_imgflip_password
 
 3. Start the application:
 ```bash
+# Flask
 python app.py
+
+# Twilio and imgflip
+python main.py
 ```
 
 4. Set up Twilio webhook:
