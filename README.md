@@ -104,7 +104,7 @@ Our integration leverages these awesome Imgflip features:
 - Full control over text placement
 - Support for custom fonts and styling
 
-### 4. GIF Memes ✨
+### 4. GIF Memes ✨ (Roadmap)
 - Animate your memes with multiple text frames
 - Perfect for reaction GIFs
 - Supports popular animated templates
