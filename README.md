@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # WhatsApp Meme Generator
 
 A WhatsApp bot that generates AI-powered memes using Imgflip's API and sends them through Twilio's WhatsApp integration.
@@ -43,3 +44,12 @@ Send the command `/ai_meme` to your WhatsApp number to receive a randomly genera
 - The Imgflip AI meme generation requires a Premium API subscription
 - First 50 creations per month are included, then $0.02 per creation
 - The service uses OpenAI's model for meme generation 
+=======
+
+
+
+
+```bash
+pip install -r requirements.txt
+```
+>>>>>>> 086905fd81a296898f597b87941ae4bc6164d532
