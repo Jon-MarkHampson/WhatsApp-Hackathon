@@ -70,12 +70,13 @@ caption 181913649
 (After entering the ID, the bot will prompt for caption text)
 
 ### Example Results
-![AI Meme Example](https://via.placeholder.com/400x300/007ACC/FFFFFF?text=AI+Meme+Example)
-![Auto Meme Example](https://via.placeholder.com/400x300/007ACC/FFFFFF?text=Auto+Meme+Example)
-![Surprise Meme Example](https://via.placeholder.com/400x300/007ACC/FFFFFF?text=Surprise+Meme+Example)
-![Search Results Example](https://via.placeholder.com/400x300/007ACC/FFFFFF?text=Search+Results+Example)
-![Template Browsing Example](https://via.placeholder.com/400x300/007ACC/FFFFFF?text=Template+Browsing+Example)
-![Custom Caption Example](https://via.placeholder.com/400x300/007ACC/FFFFFF?text=Custom+Caption+Example)
+![AI Meme Example](website/screenshots/generate.png)
+![Auto Meme Example](website/screenshots/meme.png)
+![Surprise Meme Example](website/screenshots/surprise.png)
+![Search Results Example](website/screenshots/search.png)
+![Template Browsing Example](website/screenshots/top.png)
+![Custom Caption Example](website/screenshots/caption.png)
+![Help Menu Example](website/screenshots/help.png)
 
 ## 🎨 What Imgflip Offers
 
