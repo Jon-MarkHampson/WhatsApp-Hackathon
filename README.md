@@ -38,17 +38,20 @@ help              ❓ Show all available commands
 generate A funny cat sitting on a chair
 generate A dog dancing in the rain
 ```
+![AI Meme Example](website/screenshots/generate.png)
 
 ### Auto Meme Generation
 ```
 meme I'm tired of all these meetings
 meme Finally weekend!
 ```
+![Auto Meme Example](website/screenshots/meme.png)
 
 ### Surprise Meme
 ```
 surprise
 ```
+![Surprise Meme Example](website/screenshots/surprise.png)
 
 ### Meme Search
 ```
@@ -56,26 +59,26 @@ search cat
 search dog
 search funny
 ```
+![Search Results Example](website/screenshots/search.png)
 
 ### Template Browsing
 ```
 top
 random
 ```
+![Template Browsing Example](website/screenshots/top.png)
 
 ### Custom Captioning
 ```
 caption 181913649
 ```
 (After entering the ID, the bot will prompt for caption text)
-
-### Example Results
-![AI Meme Example](website/screenshots/generate.png)
-![Auto Meme Example](website/screenshots/meme.png)
-![Surprise Meme Example](website/screenshots/surprise.png)
-![Search Results Example](website/screenshots/search.png)
-![Template Browsing Example](website/screenshots/top.png)
 ![Custom Caption Example](website/screenshots/caption.png)
+
+### Help Menu
+```
+help
+```
 ![Help Menu Example](website/screenshots/help.png)
 
 ## 🎨 What Imgflip Offers
