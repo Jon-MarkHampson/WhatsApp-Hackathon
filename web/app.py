@@ -7,7 +7,8 @@ app = Flask(__name__)
 
 def load_memes():
     try:
-        with open('memes/meme_metadata.json', 'r') as f:
+        meme_file = os.path.join(os.path.dirname(__file__), '..', 'memes', 'meme_metadata.json')
+        with open(meme_file, 'r') as f:
             data = json.load(f)
             # Sort memes by timestamp in descending order
             data['memes'].sort(key=lambda x: x['timestamp'], reverse=True)
@@ -18,7 +19,8 @@ def load_memes():
 
 def load_presentation():
     try:
-        with open('web/content/presentation.json', 'r') as f:
+        presentation_file = os.path.join(os.path.dirname(__file__), 'content', 'presentation.json')
+        with open(presentation_file, 'r') as f:
             return json.load(f)
     except Exception as e:
         print(f"Error loading presentation: {e}")
@@ -47,5 +49,9 @@ def presentation(slide_id):
 def team():
     return render_template('team.html')
 
+# Vercel requires this
+app.debug = True
+
+# This is only used when running locally
 if __name__ == '__main__':
-    app.run(debug=True) 
+    app.run(host='0.0.0.0', port=8000) 
