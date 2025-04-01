@@ -1,0 +1,90 @@
+{
+  "memes": [
+    {
+      "timestamp": "2025-04-01T04:35:56.978130",
+      "type": "ai",
+      "query": "germany wordl war",
+      "imgflip_url": "https://i.imgflip.com/9pazke.jpg",
+      "page_url": "https://imgflip.com/i/9pazke",
+      "local_path": "memes/ai_memes/ai_meme_germany wordl war_20250401_043556.jpg",
+      "template_id": 101470,
+      "texts": [
+        "GERMANY LOSING WORLD WARS TWICE",
+        "DEFINITELY ALIENS."
+      ]
+    },
+    {
+      "timestamp": "2025-04-01T04:39:43.773953",
+      "type": "ai",
+      "query": "olympics usa",
+      "imgflip_url": "https://i.imgflip.com/9pazus.jpg",
+      "page_url": "https://imgflip.com/i/9pazus",
+      "template_id": 142009471,
+      "texts": [
+        "TEAM USA FANS",
+        "WATCHING THE WINTER OLYMPICS",
+        "IS THIS A NATIONAL PASTIME?"
+      ]
+    },
+    {
+      "timestamp": "2025-04-01T05:36:24.606795",
+      "type": "auto",
+      "query": "Python is whitespace sensitive",
+      "imgflip_url": "https://i.imgflip.com/9pb478.jpg",
+      "page_url": "https://imgflip.com/i/9pb478",
+      "template_id": 129242436,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T05:36:55.516956",
+      "type": "auto",
+      "query": "Python list comprehension vs n",
+      "imgflip_url": "https://i.imgflip.com/9pb48m.jpg",
+      "page_url": "https://imgflip.com/i/9pb48m",
+      "template_id": 112126428,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T05:40:14.189323",
+      "type": "caption",
+      "query": "my_list.remove(item) | ",
+      "imgflip_url": "https://i.imgflip.com/9pb4if.jpg",
+      "page_url": "https://imgflip.com/i/9pb4if",
+      "template_id": null,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T05:41:17.896103",
+      "type": "caption",
+      "query": "throws ValueError if item not in list | not my problem",
+      "imgflip_url": "https://i.imgflip.com/9pb4lt.jpg",
+      "page_url": "https://imgflip.com/i/9pb4lt",
+      "template_id": null,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T05:43:22.525436",
+      "type": "ai",
+      "query": "bombs rambo",
+      "imgflip_url": "https://i.imgflip.com/9pb4qp.jpg",
+      "page_url": "https://imgflip.com/i/9pb4qp",
+      "template_id": 14371066,
+      "texts": [
+        "RAMBO, ALL THE BOMBS HE HAS",
+        "NO MATCH FOR YODA'S DRAMA CLASS"
+      ]
+    },
+    {
+      "timestamp": "2025-04-01T09:20:55.216906",
+      "type": "ai",
+      "query": "trump maniac today",
+      "imgflip_url": "https://i.imgflip.com/9pbj2h.jpg",
+      "page_url": "https://imgflip.com/i/9pbj2h",
+      "template_id": 234202281,
+      "texts": [
+        "ME THINKING I CAN AVOID POLITICAL DRAMA",
+        "TRUMP MANIAC TODAY"
+      ]
+    }
+  ]
+}

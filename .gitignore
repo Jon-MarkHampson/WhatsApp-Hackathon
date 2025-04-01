@@ -28,12 +28,13 @@ venv/
 ENV/
 env/
 
-# Generated memes (except specific directories)
+# Generated memes (except specific directories and metadata)
 memes/*
 !memes/ai_memes/
 !memes/auto_memes/
 !memes/caption_memes/
 !memes/gif_memes/
+!memes/meme_metadata.json
 
 # IDE
 .idea/
