@@ -141,6 +141,19 @@
         .meme-card:hover {
             z-index: 10;
         }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 50px -15px rgb(37 99 235 / 0.3);
+            }
+            50% {
+                box-shadow: 0 0 70px -15px rgb(37 99 235 / 0.5);
+            }
+        }
+
+        .dark .video-container {
+            animation: glow 3s ease-in-out infinite;
+        }
     </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
@@ -177,7 +190,7 @@
 
         <!-- Hero Section -->
         <div class="relative bg-white dark:bg-gray-800 overflow-hidden">
-            <div class="absolute inset-0 dark:bg-[url('/static/backdrop_Dark.jpg')] dark:bg-repeat dark:opacity-25 dark:[background-size:50%_50%]"></div>
+            <div class="absolute inset-0 dark:bg-[url('/static/backdrop_Dark.jpg')] dark:bg-repeat dark:opacity-25 dark:[background-size:100px_100px]"></div>
             <div class="max-w-7xl mx-auto">
                 <div class="relative z-10 pb-8 bg-transparent dark:bg-transparent sm:pb-16 md:pb-20 lg:pb-28 xl:pb-32">
                     <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
@@ -192,11 +205,11 @@
                                 </p>
                             </div>
                             <div class="md:w-1/2 flex justify-center">
-                                <div class="shadow-[0_35px_60px_-15px_rgba(255,255,255,0.1)] dark:shadow-[0_35px_60px_-15px_rgba(255,255,255,0.1)]">
+                                <div class="video-container">
                                     <video 
                                         src="/static/mockup.mp4" 
                                         alt="WhatsApp Meme Machine Mockup" 
-                                        class="w-[448px] h-[924px] object-contain rounded-[62.5px] shadow-[0_20px_50px_rgba(0,0,0,0.2)]"
+                                        class="w-[448px] h-[924px] object-contain rounded-[65.625px] shadow-[0_10px_30px_-15px_rgba(0,0,0,0.1)] dark:shadow-none"
                                         autoplay 
                                         loop 
                                         muted
