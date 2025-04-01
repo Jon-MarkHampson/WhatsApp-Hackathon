@@ -5,7 +5,9 @@ Turn your WhatsApp into a meme factory! This bot uses Imgflip's powerful API to 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-meme--machine--web.vercel.app-blue)](https://meme-machine-web.vercel.app)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-green)](https://github.com/yourusername/meme_machine)
 
-![AI Meme Example](website/static/mockup.gif)
+<p align="center">
+  <img src="website/static/mockup.gif" alt="AI Meme Example">
+</p>
 
 ## ✨ Features
 - 🧠 AI-powered meme generation using Imgflip's API
