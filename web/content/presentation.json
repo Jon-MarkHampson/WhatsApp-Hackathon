@@ -1,0 +1,70 @@
+{
+    "title": "WhatsApp Meme Generator",
+    "slides": [
+        {
+            "id": 1,
+            "headline": "Revolutionizing Meme Creation 🚀",
+            "text1": "Transform your WhatsApp into a powerful meme generation platform",
+            "bulletpoints": [
+                "AI-powered meme generation",
+                "Instant delivery via WhatsApp",
+                "Multiple meme types support",
+                "No watermarks"
+            ],
+            "image": "/static/img/hero-mockup.png",
+            "caption": "Your personal meme assistant in your pocket"
+        },
+        {
+            "id": 2,
+            "headline": "Smart Features 🧠",
+            "text1": "Leverage the power of AI for perfect memes",
+            "bulletpoints": [
+                "Context-aware template selection",
+                "Automatic text positioning",
+                "Multiple generation styles",
+                "Instant sharing capabilities"
+            ],
+            "image": "/static/img/features.png",
+            "caption": "AI-powered meme generation at your fingertips"
+        },
+        {
+            "id": 3,
+            "headline": "Easy to Use Commands 🎮",
+            "text1": "Simple commands for powerful results",
+            "bulletpoints": [
+                "/ai_meme - AI-generated memes",
+                "/auto - Automatic template selection",
+                "/caption - Custom meme creation",
+                "/gif - Animated meme generation"
+            ],
+            "image": "/static/img/commands.png",
+            "caption": "Create memes with simple text commands"
+        },
+        {
+            "id": 4,
+            "headline": "Technical Excellence 🛠",
+            "text1": "Built with modern technologies",
+            "bulletpoints": [
+                "Flask backend for reliability",
+                "Imgflip API integration",
+                "Twilio WhatsApp integration",
+                "Automatic metadata tracking"
+            ],
+            "image": "/static/img/tech-stack.png",
+            "caption": "Powered by industry-leading technologies"
+        },
+        {
+            "id": 5,
+            "headline": "Get Started Today! 🎉",
+            "text1": "Join the meme revolution",
+            "bulletpoints": [
+                "Free tier available",
+                "Premium features for power users",
+                "24/7 meme generation",
+                "Growing template library"
+            ],
+            "image": "/static/img/get-started.png",
+            "caption": "Start creating amazing memes now"
+        }
+    ]
+} 
