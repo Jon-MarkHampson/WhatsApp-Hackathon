@@ -305,6 +305,123 @@
       "page_url": "https://imgflip.com/i/9pdim4",
       "template_id": 61579,
       "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T20:37:39.113988",
+      "type": "auto",
+      "query": "You get a Jira ticket, you get a Jira ticket, everybody gets a Jira ticket",
+      "imgflip_url": "https://i.imgflip.com/9pe0e6.jpg",
+      "page_url": "https://imgflip.com/i/9pe0e6",
+      "template_id": 28251713,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T20:38:05.529092",
+      "type": "auto",
+      "query": "They removed semicolons from the codebase, but that’s none of my business",
+      "imgflip_url": "https://i.imgflip.com/9pe0gm.jpg",
+      "page_url": "https://imgflip.com/i/9pe0gm",
+      "template_id": 16464531,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T20:38:12.486389",
+      "type": "auto",
+      "query": "Back in my day we deployed via FTP",
+      "imgflip_url": "https://i.imgflip.com/9pe0hb.jpg",
+      "page_url": "https://imgflip.com/i/9pe0hb",
+      "template_id": 718432,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T20:38:19.421634",
+      "type": "auto",
+      "query": "The server goes down, no one bats an eye. The UI shifts by 1px, users lose their minds",
+      "imgflip_url": "https://i.imgflip.com/9pe0i8.jpg",
+      "page_url": "https://imgflip.com/i/9pe0i8",
+      "template_id": 1790995,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T20:38:28.068068",
+      "type": "auto",
+      "query": "What if I told you that == and === are not the same",
+      "imgflip_url": "https://i.imgflip.com/9pe0j2.jpg",
+      "page_url": "https://imgflip.com/i/9pe0j2",
+      "template_id": 100947,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T20:38:34.107408",
+      "type": "auto",
+      "query": "Yo dawg I heard you like functions, so I put a function in your function",
+      "imgflip_url": "https://i.imgflip.com/9pe0ji.jpg",
+      "page_url": "https://imgflip.com/i/9pe0ji",
+      "template_id": 101716,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T20:38:38.689202",
+      "type": "auto",
+      "query": "Y u no install dependencies",
+      "imgflip_url": "https://i.imgflip.com/9pe0jw.jpg",
+      "page_url": "https://imgflip.com/i/9pe0jw",
+      "template_id": 61527,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T20:38:47.057604",
+      "type": "auto",
+      "query": "If you hardcode values, you’re gonna have a bad time",
+      "imgflip_url": "https://i.imgflip.com/9pe0kx.jpg",
+      "page_url": "https://imgflip.com/i/9pe0kx",
+      "template_id": 100951,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T20:38:53.022942",
+      "type": "auto",
+      "query": "JavaScript y u no type safety",
+      "imgflip_url": "https://i.imgflip.com/9pe0li.jpg",
+      "page_url": "https://imgflip.com/i/9pe0li",
+      "template_id": 61527,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T20:38:58.859740",
+      "type": "auto",
+      "query": "Not sure if infinite loop or just slow WiFi",
+      "imgflip_url": "https://i.imgflip.com/9pe0m3.jpg",
+      "page_url": "https://imgflip.com/i/9pe0m3",
+      "template_id": 61520,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T20:41:54.567402",
+      "type": "auto",
+      "query": "Bugs, bugs everywhere",
+      "imgflip_url": "https://i.imgflip.com/9pe12v.jpg",
+      "page_url": "https://imgflip.com/i/9pe12v",
+      "template_id": 91538330,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T20:42:19.048040",
+      "type": "auto",
+      "query": "If you could just not, that would be great",
+      "imgflip_url": "https://i.imgflip.com/9pe15c.jpg",
+      "page_url": "https://imgflip.com/i/9pe15c",
+      "template_id": 563423,
+      "texts": []
+    },
+    {
+      "timestamp": "2025-04-01T20:51:00.476882",
+      "type": "auto",
+      "query": "You don't use dark mode, but that's none of my business",
+      "imgflip_url": "https://i.imgflip.com/9pe2i5.jpg",
+      "page_url": "https://imgflip.com/i/9pe2i5",
+      "template_id": 16464531,
+      "texts": []
     }
   ]
 }
