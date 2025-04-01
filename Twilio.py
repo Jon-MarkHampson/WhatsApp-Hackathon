@@ -77,8 +77,11 @@ class Twilio:
             if len(messages) > 0 and messages[-1].author == self.address:
                 console.print(f"Got a message from the user", style="bold green")
                 message_body = messages[-1].body
-                # Delete the message after reading it
-                messages[-1].delete()
+                try:
+                    # Delete the message after reading it
+                    messages[-1].delete()
+                except Exception as e:
+                    console.print(f"Could not delete message: {str(e)}", style="bold yellow")
                 return message_body
             console.print(f"Waiting for user message...", style="bold yellow")
             time.sleep(1)
