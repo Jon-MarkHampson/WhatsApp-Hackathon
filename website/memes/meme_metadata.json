@@ -459,6 +459,56 @@
         "\"Yeah, I think it would only take 20 minutes.\"",
         "DIY Enthusiasts Everywhere"
       ]
+    },
+    {
+      "timestamp": "2025-04-02T20:24:25.818925",
+      "type": "ai",
+      "query": "Your questions, our answers",
+      "imgflip_url": "https://i.imgflip.com/9pifnj.jpg",
+      "page_url": "https://imgflip.com/i/9pifnj",
+      "template_id": 226297822,
+      "texts": [
+        "You ask a simple question in a meeting",
+        "They give a simple answer",
+        "Now you have ten follow-up questions"
+      ]
+    },
+    {
+      "timestamp": "2025-04-02T20:25:29.868081",
+      "type": "ai",
+      "query": "Experience the power of our solution",
+      "imgflip_url": "https://i.imgflip.com/9pifu3.jpg",
+      "page_url": "https://imgflip.com/i/9pifu3",
+      "template_id": 137501417,
+      "texts": [
+        "STRUGGLING WITH SPREADSHEETS",
+        "EXPERIENCE THE POWER OF OUR SOLUTION"
+      ]
+    },
+    {
+      "timestamp": "2025-04-02T20:25:56.751023",
+      "type": "ai",
+      "query": "Experience the power of our solution",
+      "imgflip_url": "https://i.imgflip.com/9pifwr.jpg",
+      "page_url": "https://imgflip.com/i/9pifwr",
+      "template_id": 124822590,
+      "texts": [
+        "Stick to the traditional methods",
+        "Experience the power of our solution",
+        "Every marketer ever"
+      ]
+    },
+    {
+      "timestamp": "2025-04-02T20:26:19.893523",
+      "type": "ai",
+      "query": "Experience the power of our solution",
+      "imgflip_url": "https://i.imgflip.com/9pifza.jpg",
+      "page_url": "https://imgflip.com/i/9pifza",
+      "template_id": 162372564,
+      "texts": [
+        "Revolutionize the industry",
+        "Experience the power of our solution"
+      ]
     }
   ]
 }
