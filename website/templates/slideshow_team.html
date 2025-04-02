@@ -23,20 +23,38 @@
             to { opacity: 1; transform: translateY(0); }
         }
         .team-member {
-            animation: fadeIn 0.5s ease-out forwards;
+            position: absolute;
+            width: 100%;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: transform 0.5s ease-out, opacity 0.5s ease-out;
             min-height: 600px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            padding: 0 1rem;
+            box-sizing: border-box;
+            justify-content: center;
+        }
+        .team-member.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .team-member.prev {
+            transform: translateX(-100%);
         }
         .member-image {
-            width: 100%;
+            width: auto;
             max-width: 800px;
-            height: 400px;
-            object-fit: cover;
+            max-height: 400px;
+            height: auto;
+            object-fit: contain;
+            object-position: center;
             margin: 0 auto;
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            display: block;
+            background-color: #f3f4f6;
         }
         .nav-dot {
             width: 12px;
@@ -48,6 +66,15 @@
         .nav-dot.active {
             background-color: #3B82F6;
             transform: scale(1.2);
+        }
+        .team-container {
+            position: relative;
+            min-height: 600px;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
@@ -81,9 +108,9 @@
         <div class="bg-white dark:bg-gray-800 rounded-lg shadow-xl overflow-hidden">
             <div class="p-8">
                 <h1 class="text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center">{{ slide.headline }}</h1>
-                <div class="flex flex-col items-center">
+                <div class="team-container">
                     {% for member in slide.team %}
-                    <div class="team-member {% if not loop.first %}hidden{% endif %}" style="animation-delay: {{ loop.index * 0.1 }}s">
+                    <div class="team-member {% if loop.first %}active{% endif %}" style="animation-delay: {{ loop.index * 0.1 }}s">
                         <img src="{{ member.image }}" alt="{{ member.name }}" class="member-image rounded-lg shadow-lg mb-8">
                         <div class="text-center">
                             <h2 class="text-3xl font-semibold text-gray-900 dark:text-white mb-4">{{ member.name }}</h2>
@@ -150,30 +177,72 @@
         }
 
         // Team member navigation
-        function showMember(index) {
-            const members = document.querySelectorAll('.team-member');
-            const dots = document.querySelectorAll('.nav-dot');
-            
-            members.forEach(member => member.classList.add('hidden'));
-            dots.forEach(dot => dot.classList.remove('active'));
-            
-            members[index].classList.remove('hidden');
-            dots[index].classList.add('active');
-        }
-
-        // Auto-advance team members
-        let currentMemberIndex = 0;
+        let currentIndex = 0;
         const members = document.querySelectorAll('.team-member');
         const dots = document.querySelectorAll('.nav-dot');
         const totalMembers = members.length;
 
-        function nextMember() {
-            currentMemberIndex = (currentMemberIndex + 1) % totalMembers;
-            showMember(currentMemberIndex);
+        function showMember(index) {
+            const currentMember = members[currentIndex];
+            const nextMember = members[index];
+            
+            // Set initial positions
+            currentMember.classList.remove('active');
+            currentMember.classList.add('prev');
+            nextMember.classList.remove('prev');
+            nextMember.classList.add('active');
+            
+            // Update dots
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+            
+            // Update current index
+            currentIndex = index;
         }
 
-        // Start auto-advance
-        const autoAdvanceInterval = setInterval(nextMember, 5000); // Change every 5 seconds
+        function nextMember() {
+            const nextIndex = (currentIndex + 1) % totalMembers;
+            showMember(nextIndex);
+        }
+
+        function prevMember() {
+            const prevIndex = (currentIndex - 1 + totalMembers) % totalMembers;
+            showMember(prevIndex);
+        }
+
+        // Touch navigation
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    nextMember();
+                } else {
+                    prevMember();
+                }
+            }
+        }
+
+        // Make images clickable for navigation
+        document.querySelectorAll('.member-image').forEach((img, index) => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', () => {
+                nextMember();
+            });
+        });
 
         // Keyboard navigation for presentation only
         document.addEventListener('keydown', (e) => {
