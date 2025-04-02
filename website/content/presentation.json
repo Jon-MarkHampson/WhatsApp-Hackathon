@@ -156,7 +156,7 @@
                 "Error handling",
                 "User interaction flow"
             ],
-            "image": "/static/screenshots/demo_meme.png",
+            "image": "/static/screenshots/demo.jpg",
             "caption": "Experience the power of our solution"
         },
         {
@@ -212,7 +212,7 @@
                 "Future development",
                 "Open discussion"
             ],
-            "image": "/static/screenshots/qa.png",
+            "image": "/static/screenshots/qa.jpg",
             "caption": "Your questions, our answers"
         }
     ]
