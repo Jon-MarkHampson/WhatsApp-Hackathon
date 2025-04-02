@@ -90,23 +90,53 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .animate-fade-in {
-            animation: fadeIn 0.5s ease-out forwards;
-        }
+
         .meme-card {
             opacity: 0;
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+            transform: translateY(20px);
         }
+
+        .meme-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         @keyframes logo-spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
-        
+
         .logo-spin:hover {
-            animation: logo-spin 2s linear infinite;
+            animation: logo-spin 1s linear;
+        }
+
+        /* Lazy Loading Styles */
+        .lazy-load-container {
+            min-height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 2rem 0;
+        }
+
+        .lazy-load-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        .dark .lazy-load-spinner {
+            border: 5px solid #374151;
+            border-top: 5px solid #60a5fa;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         /* Neue Hover-Effekte für Galerie-Bilder */
@@ -319,7 +349,7 @@
             const cards = document.querySelectorAll('.meme-card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
-                    card.classList.add('animate-fade-in');
+                    card.classList.add('visible');
                 }, index * 100);
             });
         });
@@ -335,6 +365,72 @@
                     card.style.display = 'none';
                 }
             });
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial loading screen
+            const loadingScreen = document.getElementById('loading-screen');
+            setTimeout(() => {
+                loadingScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 500);
+            }, 1000);
+
+            // Lazy loading implementation
+            const memeGrid = document.getElementById('meme-grid');
+            const lazyLoadTrigger = document.getElementById('lazy-load-trigger');
+            const memeCards = document.querySelectorAll('.meme-card');
+            let currentIndex = 0;
+            const initialLoadCount = 12; // 4 rows * 3 columns
+
+            // Show initial cards
+            function showInitialCards() {
+                memeCards.forEach((card, index) => {
+                    if (index < initialLoadCount) {
+                        setTimeout(() => {
+                            card.classList.add('visible');
+                        }, index * 100); // Stagger the animation
+                    }
+                });
+                currentIndex = initialLoadCount;
+            }
+
+            // Intersection Observer for lazy loading
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        loadMoreCards();
+                    }
+                });
+            }, {
+                rootMargin: '100px'
+            });
+
+            // Load more cards function
+            function loadMoreCards() {
+                const cardsToLoad = 12; // Load 4 rows at a time
+                for (let i = 0; i < cardsToLoad; i++) {
+                    if (currentIndex < memeCards.length) {
+                        setTimeout(() => {
+                            memeCards[currentIndex].classList.add('visible');
+                        }, i * 100);
+                        currentIndex++;
+                    }
+                }
+                
+                if (currentIndex >= memeCards.length) {
+                    observer.unobserve(lazyLoadTrigger);
+                    lazyLoadTrigger.style.display = 'none';
+                }
+            }
+
+            // Start the lazy loading process
+            showInitialCards();
+            if (memeCards.length > initialLoadCount) {
+                observer.observe(lazyLoadTrigger);
+                lazyLoadTrigger.classList.remove('hidden');
+            }
         });
     </script>
 </body>
