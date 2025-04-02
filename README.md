@@ -142,7 +142,8 @@ TWILIO_ACCOUNT_SID=your_account_sid
 TWILIO_API_KEY_SID=your_api_key_sid
 TWILIO_API_KEY_SECRET=your_api_key_secret
 TWILIO_CHAT_SERVICE_SID=your_chat_service_sid
-TWILIO_PHONE_NUMBER=your_phone_number
+TWILIO_PHONE_NUMBER=twilio_service_number
+PHONE_NUMBER=your_personal_whatsapp_number
 IMGFLIP_USERNAME=your_imgflip_username
 IMGFLIP_PASSWORD=your_imgflip_password
 ```

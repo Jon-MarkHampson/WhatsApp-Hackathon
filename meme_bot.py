@@ -73,15 +73,15 @@ class MemeBot:
         Send the help menu message listing all available commands.
         """
         help_text = (
-            "Help Menu:\n"
-            "- Send 'meme <caption>' to generate a meme.\n"
-            "- Send 'generate <prompt>' to generate an AI meme.\n"
-            "- Send 'surprise' to generate a random meme.\n"
-            "- Send 'search <keyword>' to search for memes.\n"
-            "- Send 'top' to see the top 20 meme templates\n"
-            "- Send 'random' to see 20 random templates.\n"
-            "- Send 'caption <template_id>' then wait to be prompted to enter text.\n"
-            # "- Send '.' to exit."
+            "Welcome to Meme Machine! Ready to make magic? Just send me one of the below commands to get started. Let’s meme! 😎🎉\n"
+            "\n- generate [text]  🤖 Generate an AI-powered meme based on your text\n"
+            "- meme [text]    🎲 Let Imgflip choose the perfect template for your text\n"
+            "- surprise      🎁 Get a random meme from our curated collection\n"
+            "- search [query]   🔍 Search for meme templates by keyword\n"
+            "- top        ✨ View the 20 most popular meme templates\n"
+            "- random       🔄 View 20 random meme templates\n"
+            "- caption [id]    📝 Add your text to a specific meme template\n"
+            "- help        ❓ Show all available commands\n"
         )
         self.twilio.send_message(help_text)
         self.console.print("Replied with help menu", style="bold green")
