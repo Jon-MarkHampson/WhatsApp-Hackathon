@@ -161,6 +161,20 @@
             dots[index].classList.add('active');
         }
 
+        // Auto-advance team members
+        let currentMemberIndex = 0;
+        const members = document.querySelectorAll('.team-member');
+        const dots = document.querySelectorAll('.nav-dot');
+        const totalMembers = members.length;
+
+        function nextMember() {
+            currentMemberIndex = (currentMemberIndex + 1) % totalMembers;
+            showMember(currentMemberIndex);
+        }
+
+        // Start auto-advance
+        const autoAdvanceInterval = setInterval(nextMember, 5000); // Change every 5 seconds
+
         // Keyboard navigation for presentation only
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowLeft' && {{ current_id }} > 1) {
