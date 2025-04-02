@@ -21,14 +21,14 @@
                     "image": "/static/team/denis.jpg"
                 },
                 {
-                    "name": "Jon Meme",
+                    "name": "Jon-Mark",
                     "role": "DevOps Lead Developer",
                     "image": "/static/team/jon_mark.png"
                 },
                 {
                     "name": "Manasa",
                     "role": "Project Navigator",
-                    "image": "/static/team/manasa.png"
+                    "image": "/static/team/manasa_meme.png"
                 },
                 {
                     "name": "Amanda",
@@ -91,20 +91,6 @@
         },
         {
             "id": 5,
-            "headline": "Future & Extensions 🚀",
-            "text1": "Planned features and growth",
-            "bulletpoints": [
-                "Upcoming features",
-                "Scalability plans",
-                "Monetization options",
-                "Community engagement",
-                "Future roadmap"
-            ],
-            "image": "/static/screenshots/future.png",
-            "caption": "Continuous improvement and growth"
-        },
-        {
-            "id": 6,
             "headline": "Technical Stack 🛠",
             "text1": "Modern technologies powering our solution",
             "bulletpoints": [
@@ -118,13 +104,13 @@
             "caption": "Powered by industry-leading technologies"
         },
         {
-            "id": 7,
+            "id": 6,
             "headline": "Architecture & Code Structure 📁",
             "text1": "Clean and modular code organization",
             "bulletpoints": [
                 "Twilio.py - WhatsApp integration",
                 "imgflip.py - Meme generation",
-                "app.py - Main application",
+                "meme_bot.py - Main application",
                 "Templates - Frontend",
                 "Metadata tracking system"
             ],
@@ -132,7 +118,7 @@
             "caption": "Well-organized, maintainable codebase"
         },
         {
-            "id": 8,
+            "id": 7,
             "headline": "Process Meme",
             "text1": "A detailed view of our system architecture",
             "bulletpoints": [
@@ -146,7 +132,7 @@
             "template": "presentation_full.html"
         },
         {
-            "id": 9,
+            "id": 8,
             "headline": "Development Process 🔄",
             "text1": "Our agile development approach",
             "bulletpoints": [
@@ -160,7 +146,7 @@
             "caption": "Efficient and collaborative development"
         },
         {
-            "id": 10,
+            "id": 9,
             "headline": "Live Demo 🎥",
             "text1": "See it in action",
             "bulletpoints": [
@@ -174,7 +160,7 @@
             "caption": "Experience the power of our solution"
         },
         {
-            "id": 11,
+            "id": 10,
             "headline": "What did you like about the hackathon?",
             "text1": "Team impressions",
             "bulletpoints": [
@@ -188,7 +174,7 @@
             "template": "presentation_full.html"
         },
         {
-            "id": 12,
+            "id": 11,
             "headline": "What challenges did you face during the hackathon?",
             "text1": "Team impressions",
             "bulletpoints": [
@@ -200,6 +186,20 @@
             "image": "/static/screenshots/challenges.png",
             "caption": "Overcoming technical and non-technical obstacles",
             "template": "presentation_full.html"
+        },
+        {
+            "id": 12,
+            "headline": "Future & Extensions 🚀",
+            "text1": "Planned features and growth",
+            "bulletpoints": [
+                "Upcoming features",
+                "Scalability plans",
+                "Monetization options",
+                "Community engagement",
+                "Future roadmap"
+            ],
+            "image": "/static/screenshots/future.png",
+            "caption": "Continuous improvement and growth"
         },
         {
             "id": 13,
