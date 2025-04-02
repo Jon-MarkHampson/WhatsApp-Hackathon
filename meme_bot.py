@@ -62,11 +62,30 @@ class MemeBot:
             self.handle_random_templates()
         elif user_message_instruction == "caption":
             self.handle_caption(prompt)
+        elif user_message_instruction == "testing":
+            self.twilio.send_message("Testing...")
         else:
             # Fallback for unknown commands
             self.twilio.send_message(
                 "Sorry, I didn't understand that command. Please type 'help' to see the possible commands."
             )
+            
+    def send_meme_image_and_quick_reply(self, meme_name, meme_id, box_count, meme_url):
+        """
+        Send an image with a quick reply option.
+
+        Args:
+            image_url (str): URL of the image to send.
+            template_id (str): ID of the meme template.
+        """
+        self.twilio.send_media_message(
+            f"Template: {meme_name}\n"
+            f"ID: {meme_id}\n"
+            f"Text Box Count: {box_count}", url_for_media=meme_url
+        )
+        time.sleep(3)
+        self.twilio.send_quick_reply_message(meme_id)
+
 
     def handle_help(self):
         """
@@ -78,8 +97,8 @@ class MemeBot:
             "- meme [text]    🎲 Let Imgflip choose the perfect template for your text\n"
             "- surprise      🎁 Get a random meme from our curated collection\n"
             "- search [query]   🔍 Search for meme templates by keyword\n"
-            "- top        ✨ View the 20 most popular meme templates\n"
-            "- random       🔄 View 20 random meme templates\n"
+            "- top        ✨ View the 10 most popular meme templates\n"
+            "- random       🔄 View 10 random meme templates\n"
             "- caption [id]    📝 Add your text to a specific meme template\n"
             "- help        ❓ Show all available commands\n"
         )
@@ -161,7 +180,7 @@ class MemeBot:
 
             
             
-    def handle_search(self, prompt: str):
+    def handle_search(self, prompt: str, limit: int = 10):
         """
         Search for meme templates based on a keyword and send the results.
 
@@ -178,16 +197,14 @@ class MemeBot:
                     self.console.print("Meme search completed successfully", style="bold blue")
                     memes = response["data"]["memes"]
                     if memes:
-                        for meme in memes:
+                        for meme in memes[:limit]:
                             meme_id = meme["id"]
                             meme_name = meme["name"]
                             meme_url = meme["url"]
                             box_count = meme["box_count"]
-                            self.twilio.send_media_message(
-                                f"Template: {meme_name}\n"
-                                f"ID: {meme_id}\n"
-                                f"Text Box Count: {box_count}", url_for_media=meme_url
-                            )
+                            self.send_meme_image_and_quick_reply(meme_name, meme_id, box_count, meme_url)
+                        self.console.print("Meme search results sent successfully", style="bold blue")
+                        self.twilio.send_message("Meme search results sent successfully.")
                     else:
                         self.console.print("No memes found for the given keyword.", style="bold red")
                         self.twilio.send_message("No memes found for the given keyword.")
@@ -203,17 +220,17 @@ class MemeBot:
             self.twilio.send_message("An error occurred while searching for memes. Please try again later.")
         self.console.print("Replied with search results", style="bold green")
         
-    def handle_top_templates(self, limit: int = 20):
+    def handle_top_templates(self, limit: int = 10):
         """
         Fetch and send the top meme templates.
 
         Args:
-            limit (int, optional): The maximum number of templates to send. Defaults to 20.
+            limit (int, optional): The maximum number of templates to send. Defaults to 10.
         """
         try:
-            # Fetch top 20 meme templates from Imgflip
-            self.console.print("Fetching top 20 meme templates...", style="bold yellow")
-            self.twilio.send_message("Fetching top 20 meme templates...")
+            # Fetch top 10 meme templates from Imgflip
+            self.console.print("Fetching top 10 meme templates...", style="bold yellow")
+            self.twilio.send_message("Fetching top 10 meme templates...")
             response = self.get_memes.get_memes()
             
             if response:
@@ -225,11 +242,9 @@ class MemeBot:
                         meme_name = meme["name"]
                         meme_url = meme["url"]
                         box_count = meme["box_count"]
-                        self.twilio.send_media_message(
-                            f"Template: {meme_name}\n"
-                            f"ID: {meme_id}\n"
-                            f"Text Box Count: {box_count}", url_for_media=meme_url
-                        )
+                        self.send_meme_image_and_quick_reply(meme_name, meme_id, box_count, meme_url)
+                    self.console.print("Top meme templates sent successfully", style="bold blue")
+                    self.twilio.send_message("Top meme templates sent successfully.")
                 else:
                     error_message = response.get("error_message", "Unknown error occurred when fetching memes.")
                     self.console.print(f"Error: {error_message}", style="bold red")
@@ -240,19 +255,19 @@ class MemeBot:
         except Exception as e:
             self.console.print(f"An exception occurred: {str(e)}", style="bold red")
             self.twilio.send_message("An error occurred while fetching meme templates. Please try again later.")
-        self.console.print("Replied with top 20 meme templates", style="bold green")
+        self.console.print("Replied with top 10 meme templates", style="bold green")
         
-    def handle_random_templates(self, limit: int = 20):
+    def handle_random_templates(self, limit: int = 10):
         """
         Fetch and send random meme templates.
 
         Args:
-            limit (int, optional): Number of random templates to send. Defaults to 20.
+            limit (int, optional): Number of random templates to send. Defaults to 10.
         """
         try:
-            # Fetch 20 random meme templates from Imgflip
-            self.console.print("Fetching 20 random meme templates...", style="bold yellow")
-            self.twilio.send_message("Fetching 20 random meme templates...")
+            # Fetch 10 random meme templates from Imgflip
+            self.console.print("Fetching 10 random meme templates...", style="bold yellow")
+            self.twilio.send_message("Fetching 10 random meme templates...")
             response = self.get_memes.get_memes()
             
             if response:
@@ -265,11 +280,9 @@ class MemeBot:
                         meme_name = meme["name"]
                         meme_url = meme["url"]
                         box_count = meme["box_count"]
-                        self.twilio.send_media_message(
-                            f"Template: {meme_name}\n"
-                            f"ID: {meme_id}\n"
-                            f"Text Box Count: {box_count}", url_for_media=meme_url
-                        )
+                        self.send_meme_image_and_quick_reply(meme_name, meme_id, box_count, meme_url)
+                    self.console.print("Random meme templates sent successfully", style="bold blue")
+                    self.twilio.send_message("Random meme templates sent successfully.")
                 else:
                     error_message = response.get("error_message", "Unknown error occurred when fetching memes.")
                     self.console.print(f"Error: {error_message}", style="bold red")
@@ -280,7 +293,7 @@ class MemeBot:
         except Exception as e:
             self.console.print(f"An exception occurred: {str(e)}", style="bold red")
             self.twilio.send_message("An error occurred while fetching meme templates. Please try again later.")
-        self.console.print("Replied with 20 random meme templates", style="bold green")
+        self.console.print("Replied with 10 random meme templates", style="bold green")
         
     def handle_caption(self, template_id: str):
         """
@@ -308,6 +321,7 @@ class MemeBot:
                     caption = self.twilio.wait_for_user_message()
                     if caption == ".":
                         self.console.print("Ending conversation as user sent '.'", style="bold red")
+                        self.twilio.send_message("Ending conversation as user sent '.'")
                         return
                     captions.append(caption)
                 # Generate the meme with the provided captions
