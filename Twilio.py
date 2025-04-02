@@ -5,6 +5,7 @@ Module for managing a Twilio client and handling WhatsApp conversations.
 
 import os
 import time
+import json
 from twilio.rest import Client
 from dotenv import load_dotenv
 from rich.console import Console
@@ -121,9 +122,45 @@ class Twilio:
         console.print(f"Sending message to the user: {message}", style="bold blue")
         self.my_conversation.messages.create(body=message)
         
+    def send_test_message(self):
+        """
+        Send a test message to the user.
+        
+        Args:
+            message (str): The message to be sent.
+        """
+        console.print(f"Sending test message to the user!", style="bold blue")
+        message = self.my_conversation.messages.create(
+        # Note: these parameter names match the ones in the Content API documentation.
+        content_sid="HXa71443fe717854911f3c858892a901fd",
+        content_variables=json.dumps({
+            "1": "template_id"
+        })
+        )
+        print("Message SID:", message.sid)
+        
+    def send_quick_reply_message(self, template_id):
+        """
+        Send a test message to the user.
+        
+        Args:
+            message (str): The message to be sent.
+        """
+        console.print(f"Sending test message to the user!", style="bold blue")
+        message = self.my_conversation.messages.create(
+        # Note: these parameter names match the ones in the Content API documentation.
+        content_sid="HX61d6f00d36124d6259f741df5183f746",
+        content_variables=json.dumps({
+            "1": template_id
+        })
+        )
+        print("Message SID:", message.sid)
+    
+        
+        
     def send_media_message(self, message_body, url_for_media):
         """
-        Send a media message to the user.
+        Send a media message to the user and block until the message is delivered.
         
         Args:
             message_body (str): The text accompanying the media.
@@ -141,6 +178,7 @@ class Twilio:
 
 if __name__ == "__main__":
     demo = Twilio()
+    demo.send_quick_reply_message(156892)
     while True:
         user_message = demo.wait_for_user_message()
         if user_message == ".":
