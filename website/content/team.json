@@ -1,0 +1,34 @@
+{
+    "team": [
+        {
+            "name": "Max Smith",
+            "role": "Project Lead",
+            "image": "/static/team/member1.jpg"
+        },
+        {
+            "name": "Anna Schmidt",
+            "role": "Frontend Developer",
+            "image": "/static/team/member2.jpg"
+        },
+        {
+            "name": "Tom Weber",
+            "role": "Backend Developer",
+            "image": "/static/team/member3.jpg"
+        },
+        {
+            "name": "Lisa Mueller",
+            "role": "UI/UX Designer",
+            "image": "/static/team/member4.jpg"
+        },
+        {
+            "name": "David Klein",
+            "role": "DevOps Engineer",
+            "image": "/static/team/member5.jpg"
+        },
+        {
+            "name": "Sarah Wagner",
+            "role": "Content Manager",
+            "image": "/static/team/member6.jpg"
+        }
+    ]
+} 

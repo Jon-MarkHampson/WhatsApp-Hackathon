@@ -4,7 +4,7 @@
         {
             "id": 1,
             "headline": "Introduction & Team 👥",
-            "text1": "Meet the team behind the WhatsApp Meme Generator",
+            "text1": "",
             "bulletpoints": [
                 "Project overview and vision",
                 "Team members and roles",
@@ -12,38 +12,43 @@
                 "Collaborative student project"
             ],
             "image": "/static/img/team.png",
-            "caption": "Building the future of meme creation"
+            "caption": "Building the future of meme creation",
+            "template": "slideshow_team.html",
+            "team": [
+                {
+                    "name": "Denis",
+                    "role": "Full Stack Creative",
+                    "image": "/static/team/denis.jpg"
+                },
+                {
+                    "name": "Jon Meme",
+                    "role": "DevOps Lead Developer",
+                    "image": "/static/team/jon_mark.png"
+                },
+                {
+                    "name": "Manasa",
+                    "role": "Project Navigator",
+                    "image": "/static/team/manasa.png"
+                },
+                {
+                    "name": "Amanda",
+                    "role": "Testing and Texting",
+                    "image": "/static/team/amanda.jpg"
+                },
+                {
+                    "name": "Chioma",
+                    "role": "Planning",
+                    "image": "/static/team/chioma_meme.jpg"
+                },
+                {
+                    "name": "Pezhman",
+                    "role": "Masterschool Mentor",
+                    "image": "/static/team/pezhman.png"
+                }
+            ]
         },
         {
             "id": 2,
-            "headline": "Technical Stack 🛠",
-            "text1": "Modern technologies powering our solution",
-            "bulletpoints": [
-                "Flask backend framework",
-                "Twilio WhatsApp API",
-                "Imgflip API integration",
-                "JSON-based metadata storage",
-                "Vercel deployment"
-            ],
-            "image": "/static/img/tech-stack.png",
-            "caption": "Powered by industry-leading technologies"
-        },
-        {
-            "id": 3,
-            "headline": "Architecture & Code Structure 📁",
-            "text1": "Clean and modular code organization",
-            "bulletpoints": [
-                "Twilio.py - WhatsApp integration",
-                "imgflip.py - Meme generation",
-                "app.py - Main application",
-                "Templates - Frontend",
-                "Metadata tracking system"
-            ],
-            "image": "/static/img/architecture.png",
-            "caption": "Well-organized, maintainable codebase"
-        },
-        {
-            "id": 4,
             "headline": "Core Features 🎯",
             "text1": "Powerful meme generation capabilities",
             "bulletpoints": [
@@ -53,25 +58,11 @@
                 "Simple command interface",
                 "Instant WhatsApp delivery"
             ],
-            "image": "/static/img/features.png",
+            "image": "/static/screenshots/features.png",
             "caption": "Create memes with simple commands"
         },
         {
-            "id": 5,
-            "headline": "Challenges & Solutions 💡",
-            "text1": "Overcoming technical hurdles",
-            "bulletpoints": [
-                "Twilio message handling",
-                "Async processing",
-                "Error handling",
-                "API rate limits",
-                "Deployment challenges"
-            ],
-            "image": "/static/img/challenges.png",
-            "caption": "Innovative solutions to complex problems"
-        },
-        {
-            "id": 6,
+            "id": 3,
             "headline": "User Experience 🎨",
             "text1": "Simple and intuitive interface",
             "bulletpoints": [
@@ -81,25 +72,25 @@
                 "Instant feedback",
                 "User interaction examples"
             ],
-            "image": "/static/img/ux.png",
+            "image": "/static/screenshots/user_experience.png",
             "caption": "Making meme creation accessible to everyone"
         },
         {
-            "id": 7,
-            "headline": "Development Process 🔄",
-            "text1": "Our agile development approach",
+            "id": 4,
+            "headline": "Architecture Overview",
+            "text1": "A detailed view of our system architecture",
             "bulletpoints": [
-                "Agile methodology",
-                "Git workflow",
-                "Code review process",
-                "Testing strategies",
-                "Deployment pipeline"
+                "Components and their interactions",
+                "Data flow and processing",
+                "Security aspects",
+                "Scalability"
             ],
-            "image": "/static/img/process.png",
-            "caption": "Efficient and collaborative development"
+            "image": "/static/screenshots/architecture.png",
+            "caption": "System architecture of the WhatsApp Meme Generator",
+            "template": "presentation_full.html"
         },
         {
-            "id": 8,
+            "id": 5,
             "headline": "Future & Extensions 🚀",
             "text1": "Planned features and growth",
             "bulletpoints": [
@@ -109,11 +100,67 @@
                 "Community engagement",
                 "Future roadmap"
             ],
-            "image": "/static/img/future.png",
+            "image": "/static/screenshots/future.png",
             "caption": "Continuous improvement and growth"
         },
         {
+            "id": 6,
+            "headline": "Technical Stack 🛠",
+            "text1": "Modern technologies powering our solution",
+            "bulletpoints": [
+                "Flask backend framework",
+                "Twilio WhatsApp API",
+                "Imgflip API integration",
+                "JSON-based metadata storage",
+                "Vercel deployment"
+            ],
+            "image": "/static/screenshots/twilio.png",
+            "caption": "Powered by industry-leading technologies"
+        },
+        {
+            "id": 7,
+            "headline": "Architecture & Code Structure 📁",
+            "text1": "Clean and modular code organization",
+            "bulletpoints": [
+                "Twilio.py - WhatsApp integration",
+                "imgflip.py - Meme generation",
+                "app.py - Main application",
+                "Templates - Frontend",
+                "Metadata tracking system"
+            ],
+            "image": "/static/screenshots/code.png",
+            "caption": "Well-organized, maintainable codebase"
+        },
+        {
+            "id": 8,
+            "headline": "Process Meme",
+            "text1": "A detailed view of our system architecture",
+            "bulletpoints": [
+                "Components and their interactions",
+                "Data flow and processing",
+                "Security aspects",
+                "Scalability"
+            ],
+            "image": "/static/screenshots/process_meme.png",
+            "caption": "Planning the WhatsApp Meme Generator",
+            "template": "presentation_full.html"
+        },
+        {
             "id": 9,
+            "headline": "Development Process 🔄",
+            "text1": "Our agile development approach",
+            "bulletpoints": [
+                "Agile methodology",
+                "Git workflow",
+                "Code review process",
+                "Testing strategies",
+                "Deployment pipeline"
+            ],
+            "image": "/static/screenshots/process.png",
+            "caption": "Efficient and collaborative development"
+        },
+        {
+            "id": 10,
             "headline": "Live Demo 🎥",
             "text1": "See it in action",
             "bulletpoints": [
@@ -123,11 +170,39 @@
                 "Error handling",
                 "User interaction flow"
             ],
-            "image": "/static/img/demo.png",
+            "image": "/static/screenshots/demo_meme.png",
             "caption": "Experience the power of our solution"
         },
         {
-            "id": 10,
+            "id": 11,
+            "headline": "What did you like about the hackathon?",
+            "text1": "Team impressions",
+            "bulletpoints": [
+                "Components and their interactions",
+                "Data flow and processing",
+                "Security aspects",
+                "Scalability"
+            ],
+            "image": "/static/screenshots/likes.png",
+            "caption": "What our team enjoyed during the project",
+            "template": "presentation_full.html"
+        },
+        {
+            "id": 12,
+            "headline": "What challenges did you face during the hackathon?",
+            "text1": "Team impressions",
+            "bulletpoints": [
+                "Components and their interactions",
+                "Data flow and processing",
+                "Security aspects",
+                "Scalability"
+            ],
+            "image": "/static/screenshots/challenges.png",
+            "caption": "Overcoming technical and non-technical obstacles",
+            "template": "presentation_full.html"
+        },
+        {
+            "id": 13,
             "headline": "Q&A Session ❓",
             "text1": "Let's discuss",
             "bulletpoints": [
@@ -137,7 +212,7 @@
                 "Future development",
                 "Open discussion"
             ],
-            "image": "/static/img/qa.png",
+            "image": "/static/screenshots/qa.png",
             "caption": "Your questions, our answers"
         }
     ]

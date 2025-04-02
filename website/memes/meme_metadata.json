@@ -422,6 +422,43 @@
       "page_url": "https://imgflip.com/i/9pe2i5",
       "template_id": 16464531,
       "texts": []
+    },
+    {
+      "timestamp": "2025-04-02T10:11:30.621333",
+      "type": "ai",
+      "query": "yeah i think it would only take 20 mins  to do",
+      "imgflip_url": "https://i.imgflip.com/9pg72f.jpg",
+      "page_url": "https://imgflip.com/i/9pg72f",
+      "template_id": 252600902,
+      "texts": [
+        "Wait, so it’s always been more than 20 minutes?",
+        "Always has been."
+      ]
+    },
+    {
+      "timestamp": "2025-04-02T10:11:55.016444",
+      "type": "ai",
+      "query": "yeah i think it would only take 20 mins  to do",
+      "imgflip_url": "https://i.imgflip.com/9pg73k.jpg",
+      "page_url": "https://imgflip.com/i/9pg73k",
+      "template_id": 180190441,
+      "texts": [
+        "\"Yeah, I think it would only take 20 mins to do\"",
+        "Underestimating every DIY project ever",
+        "Me"
+      ]
+    },
+    {
+      "timestamp": "2025-04-02T10:12:04.011178",
+      "type": "ai",
+      "query": "yeah i think it would only take 20 min",
+      "imgflip_url": "https://i.imgflip.com/9pg743.jpg",
+      "page_url": "https://imgflip.com/i/9pg743",
+      "template_id": 123999232,
+      "texts": [
+        "\"Yeah, I think it would only take 20 minutes.\"",
+        "DIY Enthusiasts Everywhere"
+      ]
     }
   ]
 }

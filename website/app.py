@@ -26,6 +26,16 @@ def load_presentation():
         print(f"Error loading presentation: {e}")
         return {}
 
+def load_team():
+    try:
+        team_file = os.path.join('website', 'content', 'team.json')
+        with open(team_file, 'r') as f:
+            data = json.load(f)
+            return data['team']
+    except Exception as e:
+        print(f"Error loading team data: {e}")
+        return []
+
 @app.route('/')
 def gallery():
     memes = load_memes()
@@ -40,14 +50,19 @@ def presentation(slide_id):
     content = load_presentation()
     max_slides = len(content['slides'])
     current_slide = content['slides'][min(slide_id - 1, max_slides - 1)]
-    return render_template('presentation.html', 
+    
+    # Determine which template to use based on slide type
+    template = current_slide.get('template', 'presentation.html')
+    
+    return render_template(template, 
                          slide=current_slide, 
                          current_id=slide_id,
                          max_slides=max_slides)
 
 @app.route('/team')
 def team():
-    return render_template('team.html')
+    team_data = load_team()
+    return render_template('team.html', team=team_data)
 
 # For Vercel deployment
 app = app
