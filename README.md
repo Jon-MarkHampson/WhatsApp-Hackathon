@@ -150,10 +150,6 @@ IMGFLIP_PASSWORD=your_imgflip_password
 
 3. Start the application:
 ```bash
-# Flask (Web Interface)
-cd website
-python app.py
-
 # Twilio and imgflip (WhatsApp Bot)
 python main.py
 ```
